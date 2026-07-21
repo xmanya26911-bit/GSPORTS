@@ -1,91 +1,128 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { useRef } from "react";
 
-const categories = [
-  { title: "Cricket", img: "cricket.jpg", desc: "Bats, balls, pads, gloves & full kit", items: 50 },
-  { title: "Football", img: "football.jpg", desc: "Shoes, jerseys, balls & goalkeeper gear", items: 30 },
-  { title: "Badminton", img: "badminton.jpg", desc: "Rackets, shuttlecocks, nets & court shoes", items: 25 },
-  { title: "Activewear", img: "activewear.jpg", desc: "T-shirts, shorts, tracksuits, gym wear", items: 100 },
-  { title: "Sports Shoes", img: "shoes.jpg", desc: "Running, training, cricket & casual", items: 60 },
-  { title: "Accessories", img: "accessories.jpg", desc: "Bags, caps, bottles, protection gear", items: 40 },
+const cats = [
+  { title: "Cricket", img: "cricket.jpg", desc: "Bats, pads, gloves & full kits", count: "50+" },
+  { title: "Football", img: "football.jpg", desc: "Boots, balls, jerseys & goalie gear", count: "30+" },
+  { title: "Badminton", img: "badminton.jpg", desc: "Rackets, shuttlecocks, nets", count: "25+" },
+  { title: "Activewear", img: "activewear.jpg", desc: "T-shirts, shorts, tracksuits", count: "100+" },
+  { title: "Shoes", img: "shoes.jpg", desc: "Running, training & sports footwear", count: "60+" },
+  { title: "Accessories", img: "accessories.jpg", desc: "Bags, bottles, caps & more", count: "40+" },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const } },
-};
+function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-8, 8]);
+
+  function handleMouse(e: React.MouseEvent) {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(px);
+    y.set(py);
+  }
+
+  function handleLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      style={{ perspective: 1500 }}
+    >
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouse}
+        onMouseLeave={handleLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="glass-card rounded-2xl overflow-hidden group cursor-pointer"
+      >
+        {/* Image */}
+        <div className="relative h-52 overflow-hidden" style={{ transform: "translateZ(20px)" }}>
+          <img
+            src={`/images/${cat.img}`}
+            alt={cat.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent" />
+          <div className="absolute top-4 left-4">
+            <span className="text-[11px] text-accent font-medium bg-bg-dark/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-accent/20">
+              {cat.count} items
+            </span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 md:p-7">
+          <h3
+            className="text-xl font-bold text-text mb-2 group-hover:text-accent transition-colors duration-300"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            {cat.title}
+          </h3>
+          <p className="text-text-muted text-sm leading-relaxed mb-5">{cat.desc}</p>
+          <Link
+            href={`/products#${cat.title.toLowerCase()}`}
+            className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-text-muted group-hover:text-accent transition-colors duration-300"
+          >
+            Browse Collection
+            <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Categories() {
   return (
-    <section className="section-padding bg-bg" id="categories">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+      {/* Section BG Accent */}
+      <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-accent/[0.02] to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="mb-16"
         >
-          <div className="w-8 h-px bg-accent/50 mx-auto mb-6" />
-          <span className="text-accent text-xs font-medium uppercase tracking-[0.25em]">Collections</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-text mt-4 mb-4" style={{ fontFamily: "var(--font-playfair)" }}>
-            Everything for Your Game
+          <div className="section-label mb-5">Collections</div>
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-text mt-3 mb-5"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Everything for
+            <br />
+            <span className="text-gold-gradient">Your Game</span>
           </h2>
-          <p className="text-text-muted max-w-xl mx-auto text-sm leading-relaxed">
-            From cricket to football, badminton to gym wear — we stock 300+ products across every major sport.
+          <p className="text-text-muted max-w-xl text-sm leading-relaxed">
+            300+ products across six categories. Every item handpicked for quality and performance.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
-        >
-          {categories.map((cat) => (
-            <motion.div
-              key={cat.title}
-              variants={itemVariants}
-              className="glass-card rounded-2xl overflow-hidden group"
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={`/images/${cat.img}`}
-                  alt={cat.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-5">
-                  <span className="text-xs text-accent font-medium bg-bg-dark/60 backdrop-blur-sm px-3 py-1 rounded-full border border-accent/20">
-                    {cat.items}+ items
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg font-bold text-text mb-2">{cat.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed mb-4">{cat.desc}</p>
-                <Link
-                  href={`/products#${cat.title.toLowerCase()}`}
-                  className="inline-flex items-center gap-1.5 text-accent text-xs font-medium tracking-wide hover:text-accent-light transition-colors group/link"
-                >
-                  Browse Collection
-                  <ChevronRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {cats.map((cat, i) => (
+            <TiltCard key={cat.title} cat={cat} i={i} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

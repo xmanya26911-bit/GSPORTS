@@ -1,32 +1,24 @@
 
 "use client";
 
+import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { useState } from "react";
 
 export default function WhatsAppButton() {
-  const [hovered, setHovered] = useState(false);
-  const phone = "9107405208523";
-
   return (
-    <a
-      href={`https://wa.me/${phone}?text=Hi%20G%20SPORTS!`}
+    <motion.a
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 1, type: "spring", stiffness: 200, damping: 15 }}
+      href="https://wa.me/917405208523?text=Hi%20G%20SPORTS!%20I%20have%20a%20question%20about%20your%20products."
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 group"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      aria-label="Chat on WhatsApp"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-white px-5 py-3.5 rounded-full shadow-xl hover:shadow-2xl hover:bg-[#22c35e] transition-all duration-300 group"
     >
-      <div className="relative">
-        <div className="absolute inset-0 rounded-full bg-green-500/30 animate-ping opacity-30" />
-        <div className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-green-600 flex items-center justify-center shadow-lg transition-all duration-500 ${hovered ? "scale-110 shadow-xl shadow-green-500/20" : "shadow-green-500/10"}`}>
-          <MessageCircle className="w-6 h-6 md:w-7 md:h-7 text-white" />
-        </div>
-        <div className={`absolute right-16 top-1/2 -translate-y-1/2 bg-bg-dark text-text text-xs px-3 py-1.5 rounded-lg whitespace-nowrap border border-border-light transition-all duration-300 ${hovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 pointer-events-none"}`}>
-          Chat with us
-        </div>
-      </div>
-    </a>
+      <MessageCircle className="w-5 h-5" />
+      <span className="text-sm font-medium max-w-0 overflow-hidden group-hover:max-w-[120px] transition-all duration-500 whitespace-nowrap">
+        Chat with us
+      </span>
+    </motion.a>
   );
 }

@@ -2,87 +2,98 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Award, Users, ThumbsUp } from "lucide-react";
+import { Heart, Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const counted = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !counted.current) {
+          counted.current = true;
+          const duration = 2000;
+          const steps = 60;
+          const increment = end / steps;
+          let current = 0;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= end) {
+              setCount(end);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [end]);
+
+  return (
+    <div ref={ref} className="text-4xl md:text-5xl font-black text-accent" style={{ fontFamily: "var(--font-playfair)" }}>
+      {count}{suffix}
+    </div>
+  );
+}
 
 export default function OwnerHighlight() {
   return (
-    <section className="section-padding bg-bg-alt relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="absolute inset-0 bg-premium-section" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/3 rounded-full blur-[150px] -translate-x-1/2" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="w-8 h-px bg-accent/50 mb-6" />
-            <span className="text-accent text-xs font-medium uppercase tracking-[0.25em]">The Owner</span>
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-              Meet{" "}
-              <span className="text-gold-gradient">Ganpatbhai Prajapati</span>
-            </h2>
-            <p className="text-text-body text-sm md:text-base leading-relaxed mb-6">
-              Behind every great store is a great person. Ganpatbhai Prajapati — the heart 
-              and soul of G SPORTS — is known across Himatnagar for his humble nature, 
-              expert advice, and genuine care for every customer.
-            </p>
-            <p className="text-text-body/70 text-sm leading-relaxed mb-8 italic">
-              &ldquo;Your work speaks volumes of the kind of man you are&rdquo;
-              <span className="block text-text-muted/50 text-xs mt-1 not-italic">— mayank prajapati, Google Review</span>
-            </p>
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20">
+            <Heart className="w-6 h-6 text-accent" />
+          </div>
+          <span className="text-accent text-xs font-medium uppercase tracking-[0.25em]">The Face of G SPORTS</span>
+          <h2 className="text-3xl md:text-5xl font-black text-text mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+            Ganpatbhai Prajapati
+          </h2>
+          <p className="text-text-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-12">
+            &ldquo;Your work speaks volumes of the kind of man you are — efficient, organized and result-oriented. 
+            The owner Ganpatbhai Prajapati, he&apos;s very humble and kind man.&rdquo;
+          </p>
+          <div className="flex items-center justify-center gap-1 mb-10">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 text-accent fill-accent" />
+            ))}
+            <span className="text-text-muted text-xs ml-2">253 reviews</span>
+          </div>
+        </motion.div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: Heart, label: "Kind & Humble", desc: "Loved by customers" },
-                { icon: Award, label: "10+ Years", desc: "Serving Himatnagar" },
-                { icon: Users, label: "10K+ Customers", desc: "And counting" },
-                { icon: ThumbsUp, label: "Expert Advice", desc: "Always honest" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-accent/5">
-                  <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                    <item.icon className="w-4 h-4 text-accent" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-primary-dark text-xs">{item.label}</div>
-                    <div className="text-text-muted text-[11px]">{item.desc}</div>
-                  </div>
-                </div>
-              ))}
+        {/* Counters */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-3 gap-8 max-w-lg mx-auto"
+        >
+          {[
+            { end: 10, suffix: "+", label: "Years of Service" },
+            { end: 10000, suffix: "+", label: "Happy Customers" },
+            { end: 300, suffix: "+", label: "Products" },
+          ].map((stat) => (
+            <div key={stat.label} className="glass-card rounded-xl p-6">
+              <AnimatedCounter end={stat.end} suffix={stat.suffix} />
+              <div className="text-text-muted text-xs mt-2 uppercase tracking-wider">{stat.label}</div>
             </div>
-          </motion.div>
-
-          {/* Right - Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="bg-bg-dark border border-border rounded-3xl p-8 md:p-10">
-              <h3 className="text-text text-xl font-bold mb-8" style={{ fontFamily: "var(--font-playfair)" }}>
-                Why G SPORTS
-              </h3>
-              <div className="space-y-6">
-                {[
-                  { stat: "4.7★", label: "Google Rating", sub: "253+ reviews" },
-                  { stat: "300+", label: "Products", sub: "Across all sports" },
-                  { stat: "10+ Years", label: "Experience", sub: "Serving Himatnagar" },
-                  { stat: "100%", label: "Authentic", sub: "Genuine products only" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center justify-between border-b border-border-light pb-5 last:border-0 last:pb-0">
-                    <div>
-                      <div className="text-text text-2xl font-black">{item.stat}</div>
-                      <div className="text-text-muted/60 text-xs mt-0.5">{item.sub}</div>
-                    </div>
-                    <span className="text-accent text-xs uppercase tracking-widest font-medium">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

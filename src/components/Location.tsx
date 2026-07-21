@@ -2,109 +2,111 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import { MapPin, Clock, Phone } from "lucide-react";
+
+const hours = [
+  { day: "Mon – Sat", time: "9:00 AM – 9:00 PM" },
+  { day: "Sunday", time: "10:00 AM – 8:00 PM" },
+];
 
 export default function Location() {
   return (
-    <section className="section-padding bg-bg-alt">
+    <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-premium-dark overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14"
+        >
+          <div className="section-label mb-5">Visit Us</div>
+          <h2 className="text-3xl md:text-5xl font-black text-text mt-3" style={{ fontFamily: "var(--font-playfair)" }}>
+            Find G SPORTS
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Map */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="w-8 h-px bg-accent/50 mb-6" />
-            <span className="text-accent text-xs font-medium uppercase tracking-[0.25em]">Visit Us</span>
-            <h2 className="text-3xl md:text-4xl font-black text-primary-dark mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-              Come Experience
-              <br />
-              <span className="text-gold-gradient">the Best Sports Gear</span>
-            </h2>
-            <p className="text-text-body text-sm leading-relaxed mb-8">
-              Located in the heart of Himatnagar, just minutes away. 
-              Drop by to explore our full range — our team will help you find exactly what you need.
-            </p>
-
-            <div className="space-y-4">
-              <div className="glass-card-light rounded-xl p-4 flex items-start gap-4">
-                <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-semibold text-primary-dark text-xs tracking-wide uppercase">Address</h4>
-                  <p className="text-text-body text-sm mt-1 leading-relaxed">
-                    1/2, KESHAVAM CREST, F F, behind PRATHAM SQUARE,<br />
-                    opp. SWAMINAR MANDIR, Anant Vihar Society,<br />
-                    Himatnagar, Gujarat 383001
-                  </p>
-                </div>
-              </div>
-
-              <div className="glass-card-light rounded-xl p-4 flex items-start gap-4">
-                <Clock className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-semibold text-primary-dark text-xs tracking-wide uppercase">Hours</h4>
-                  <div className="text-text-body text-sm mt-1 space-y-1">
-                    <div className="flex justify-between gap-8">
-                      <span>Mon – Sat</span>
-                      <span className="font-medium text-primary-dark">9:00 AM – 9:00 PM</span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span>Sunday</span>
-                      <span className="font-medium text-primary-dark">10:00 AM – 8:00 PM</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="glass-card-light rounded-xl p-4 flex items-start gap-4">
-                <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-semibold text-primary-dark text-xs tracking-wide uppercase">Phone</h4>
-                  <a href="tel:07405208523" className="text-accent text-sm font-medium mt-1 block hover:text-bg-dark transition-colors">
-                    074052 08523
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a
-                href="https://maps.google.com/?q=G+SPORTS+Himatnagar+KESHAVAM+CREST"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-bg-dark text-text px-6 py-3 rounded-xl text-sm font-medium hover:bg-primary/80 transition-all duration-500 border border-border"
-              >
-                <Navigation className="w-4 h-4" />
-                Directions
-              </a>
-              <a
-                href="tel:07405208523"
-                className="inline-flex items-center justify-center gap-2 border border-accent/30 text-accent px-6 py-3 rounded-xl text-sm font-medium hover:bg-accent hover:text-bg-dark transition-all duration-500"
-              >
-                <Phone className="w-4 h-4" />
-                Call Store
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-border"
+            viewport={{ once: true }}
+            className="glass-card rounded-2xl overflow-hidden h-[400px]"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.5!2d72.95!3d23.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sG%20SPORTS!5e0!3m2!1sen!2sin!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.887!2d73.126!3d23.599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sG%20SPORTS!5e0!3m2!1sen!2sin!4v1"
               width="100%"
               height="100%"
-              style={{ border: 0 }}
+              style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg) saturate(0.5)" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="G SPORTS Location"
             />
+          </motion.div>
+
+          {/* Details */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-2xl p-8 md:p-10 flex flex-col justify-center"
+          >
+            <div className="space-y-6">
+              {/* Address */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20">
+                  <MapPin className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-text text-sm mb-1">Address</h4>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    1/2, Keshavam Crest, FF, behind Pratham Square,<br />
+                    opp. Swaminar Mandir, Anant Vihar Society,<br />
+                    Himatnagar, Gujarat 383001
+                  </p>
+                  <a
+                    href="https://maps.google.com/?q=G+SPORTS+Himatnagar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light transition-colors"
+                  >
+                    Get Directions →
+                  </a>
+                </div>
+              </div>
+
+              {/* Hours */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20">
+                  <Clock className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-text text-sm mb-2">Hours</h4>
+                  <div className="space-y-1.5">
+                    {hours.map((h) => (
+                      <div key={h.day} className="flex items-center justify-between gap-8 text-sm">
+                        <span className="text-text-muted">{h.day}</span>
+                        <span className="text-text font-medium">{h.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20">
+                  <Phone className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-text text-sm mb-1">Phone</h4>
+                  <a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light transition-colors">
+                    074052 08523
+                  </a>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

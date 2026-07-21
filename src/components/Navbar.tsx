@@ -2,11 +2,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const links = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/about", label: "About" },
@@ -15,108 +16,119 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        scrolled ? "glass shadow-2xl shadow-black/50" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11">
-              <div className="absolute inset-0 bg-accent rounded-lg rotate-3 group-hover:rotate-6 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-bg-dark rounded-lg -rotate-3 group-hover:-rotate-6 transition-transform duration-500 flex items-center justify-center border border-accent/30">
-                <span className="text-accent font-black text-xl" style={{ fontFamily: "var(--font-playfair)" }}>G</span>
-              </div>
-            </div>
-            <div>
-              <span className="text-lg font-bold text-text tracking-tight block leading-tight">
-                G<span className="text-accent">SPORTS</span>
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+          scrolled
+            ? "bg-bg-dark/80 backdrop-blur-xl border-b border-white/5"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="group relative">
+              <span
+                className="text-xl font-black tracking-tight text-text"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                G<span className="text-accent">.</span>SPORTS
               </span>
-              <span className="text-xs text-text-muted tracking-widest uppercase hidden sm:block">Since 2014</span>
-            </div>
-          </Link>
+              <span className="block text-[10px] text-text-muted tracking-[0.3em] uppercase mt-[-2px]">
+                Since 2014
+              </span>
+              <div className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-500" />
+            </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
+              {links.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-5 py-2 text-sm tracking-wide transition-all duration-300 rounded-lg ${
+                      isActive
+                        ? "text-accent bg-accent/5"
+                        : "text-text-muted hover:text-text hover:bg-white/[0.02]"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute bottom-0 left-4 right-4 h-[2px] bg-accent rounded-full"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
               <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-text-muted hover:text-text transition-colors relative group tracking-wide"
+                href="/contact"
+                className="ml-4 px-5 py-2 text-sm font-medium text-bg-dark bg-accent rounded-lg hover:bg-accent-light transition-all duration-300"
               >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-500 group-hover:w-full" />
+                Visit Store
               </Link>
-            ))}
-          </nav>
+            </div>
 
-          {/* CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:07405208523"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 border border-accent/30 text-accent text-sm font-medium rounded-lg hover:bg-accent hover:text-bg-dark transition-all duration-500"
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden text-text p-2"
+              aria-label="Toggle menu"
             >
-              <Phone className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
-              <span>074052 08523</span>
-            </a>
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
-
-          {/* Mobile */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-white/5 transition-colors text-text-muted"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
-        {isOpen && (
+        {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden border-t border-border-light bg-bg-dark/95 backdrop-blur-xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-bg-dark/95 backdrop-blur-xl md:hidden"
           >
-            <nav className="max-w-7xl mx-auto px-4 py-6 space-y-1">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex flex-col items-center justify-center h-full gap-8">
+              {links.map((link, i) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 rounded-lg text-text-muted hover:text-text hover:bg-white/5 font-medium transition-all"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`text-2xl font-bold tracking-wide ${
+                      pathname === link.href ? "text-accent" : "text-text-muted hover:text-text"
+                    }`}
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <a
-                href="tel:07405208523"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-4 py-3 mt-4 border border-accent/30 text-accent rounded-lg font-medium hover:bg-accent hover:text-bg-dark transition-all"
-              >
-                <Phone className="w-4 h-4" />
-                Call 074052 08523
-              </a>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
