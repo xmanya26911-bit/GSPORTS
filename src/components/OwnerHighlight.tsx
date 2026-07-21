@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Heart, Star } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
+function AnimatedCounter({ end, suffix = "", label = "" }: { end: number; suffix?: string; label?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const counted = useRef(false);
@@ -39,17 +39,20 @@ function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string })
   }, [end]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-black text-accent" style={{ fontFamily: "var(--font-playfair)" }}>
-      {count}{suffix}
+    <div ref={ref} className="text-center">
+      <div className="text-4xl md:text-5xl font-black text-gold-gradient" style={{ fontFamily: "var(--font-playfair)" }}>
+        {count}{suffix}
+      </div>
+      {label && <div className="text-text-muted text-xs mt-2 uppercase tracking-wider">{label}</div>}
     </div>
   );
 }
 
 export default function OwnerHighlight() {
   return (
-    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="absolute inset-0 bg-premium-section" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/3 rounded-full blur-[150px] -translate-x-1/2" />
+    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent/3 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[120px]" />
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
@@ -57,22 +60,22 @@ export default function OwnerHighlight() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20">
+          <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20">
             <Heart className="w-6 h-6 text-accent" />
           </div>
-          <span className="text-accent text-xs font-medium uppercase tracking-[0.25em]">The Face of G SPORTS</span>
-          <h2 className="text-3xl md:text-5xl font-black text-text mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+          <span className="text-accent text-xs font-medium uppercase tracking-[0.3em]">The Face of G SPORTS</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
             Ganpatbhai Prajapati
           </h2>
-          <p className="text-text-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-12">
+          <p className="text-text-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
             &ldquo;Your work speaks volumes of the kind of man you are — efficient, organized and result-oriented. 
             The owner Ganpatbhai Prajapati, he&apos;s very humble and kind man.&rdquo;
           </p>
-          <div className="flex items-center justify-center gap-1 mb-10">
+          <div className="flex items-center justify-center gap-1 mb-12">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-4 h-4 text-accent fill-accent" />
             ))}
-            <span className="text-text-muted text-xs ml-2">253 reviews</span>
+            <span className="text-text-muted text-xs ml-2">4.7★ · 253 reviews</span>
           </div>
         </motion.div>
 
@@ -81,18 +84,17 @@ export default function OwnerHighlight() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 gap-8 max-w-lg mx-auto"
+          className="grid grid-cols-3 gap-6 max-w-2xl mx-auto"
         >
-          {[
-            { end: 10, suffix: "+", label: "Years of Service" },
-            { end: 10000, suffix: "+", label: "Happy Customers" },
-            { end: 300, suffix: "+", label: "Products" },
-          ].map((stat) => (
-            <div key={stat.label} className="glass-card rounded-xl p-6">
-              <AnimatedCounter end={stat.end} suffix={stat.suffix} />
-              <div className="text-text-muted text-xs mt-2 uppercase tracking-wider">{stat.label}</div>
-            </div>
-          ))}
+          <div className="glass-card rounded-2xl p-8 py-10">
+            <AnimatedCounter end={10} suffix="+" label="Years of Service" />
+          </div>
+          <div className="glass-card rounded-2xl p-8 py-10">
+            <AnimatedCounter end={1000} suffix="+" label="Happy Customers" />
+          </div>
+          <div className="glass-card rounded-2xl p-8 py-10">
+            <AnimatedCounter end={300} suffix="+" label="Products in Store" />
+          </div>
         </motion.div>
       </div>
     </section>
