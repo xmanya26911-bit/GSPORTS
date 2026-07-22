@@ -3,8 +3,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search, Package } from "lucide-react";
+import { Search, Package, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useCart } from "@/store/cart";
 
 const categoryImages: Record<string, string> = {
   Cricket: "cricket.jpg",
@@ -29,6 +30,7 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const addItem = useCart((s) => s.addItem);
 
   useEffect(() => {
     fetch("/api/products")
@@ -107,9 +109,25 @@ export default function ProductsPage() {
                   <h3 className="font-semibold text-text text-sm mb-1">{product.name}</h3>
                   <p className="text-text-muted text-xs mb-1">{product.brand}</p>
                   <p className="text-text-muted/50 text-[11px] line-clamp-2 mb-3">{product.description}</p>
-                  <div className="flex items-center justify-between pt-2 border-t border-border">
-                    <span className="text-accent font-semibold text-sm">{product.price}</span>
-                    <span className="text-text-muted/40 text-[11px] uppercase tracking-wider">{product.category}</span>
+                  <div className="flex items-center gap-2 pt-2 border-t border-border">
+                    <span className="text-accent font-semibold text-sm flex-1">{product.price}</span>
+                    <button
+                      onClick={() =>
+                        addItem({
+                          id: product.id,
+                          slug: product.slug,
+                          name: product.name,
+                          image: product.images?.[0]
+                            ? product.images[0]
+                            : `/images/${categoryImages[product.category] || "hero-bg.jpg"}`,
+                          price: product.price,
+                        })
+                      }
+                      className="p-2 rounded-lg bg-accent/10 text-accent hover:bg-accent hover:text-bg-dark transition-all duration-300"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      <ShoppingCart size={16} />
+                    </button>
                   </div>
                 </div>
               </motion.div>

@@ -9,6 +9,7 @@ import CustomCursor from "@/components/CustomCursor";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import LoadingScreen from "@/components/LoadingScreen";
 import Spotlight from "@/components/Spotlight";
+import CartDrawer from "@/components/CartDrawer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <CartDrawer />
       </body>
     </html>
   );

@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
+import { useCart } from "@/store/cart";
 
 const links = [
   { href: "/", label: "Home" },
@@ -19,6 +20,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const totalItems = useCart((s) => s.totalItems());
+  const openCart = useCart((s) => s.openCart);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -76,6 +79,18 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              <button
+                onClick={openCart}
+                className="relative p-2.5 text-text-muted hover:text-text transition-colors duration-300"
+                aria-label="Open cart"
+              >
+                <ShoppingBag size={20} />
+                {totalItems > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-accent text-bg-dark text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {totalItems > 9 ? "9+" : totalItems}
+                  </span>
+                )}
+              </button>
               <Link
                 href="/contact"
                 className="ml-4 px-5 py-2 text-sm font-medium text-bg-dark bg-accent rounded-lg hover:bg-accent-light transition-all duration-300"
