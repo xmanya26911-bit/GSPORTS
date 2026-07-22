@@ -11,34 +11,12 @@ const categoryImages: Record<string, string> = {
   Activewear: "activewear.jpg", Shoes: "shoes.jpg", Accessories: "accessories.jpg",
 };
 
-const products = [
-  { name: "Cricket Bat (English Willow)", category: "Cricket", price: "₹2,500 – ₹15,000", desc: "Premium quality" },
-  { name: "Cricket Ball (Leather)", category: "Cricket", price: "₹350 – ₹1,200", desc: "Match-ready" },
-  { name: "Batting Pads", category: "Cricket", price: "₹1,200 – ₹4,500", desc: "Lightweight" },
-  { name: "Cricket Gloves", category: "Cricket", price: "₹800 – ₹3,000", desc: "Comfort grip" },
-  { name: "Helmet", category: "Cricket", price: "₹1,500 – ₹5,000", desc: "ISI certified" },
-  { name: "Cricket Kit Bag", category: "Cricket", price: "₹2,000 – ₹6,000", desc: "Durable" },
-  { name: "Football", category: "Football", price: "₹500 – ₹3,000", desc: "Match-quality" },
-  { name: "Football Shoes", category: "Football", price: "₹1,500 – ₹6,000", desc: "Studded & turf" },
-  { name: "Goalkeeper Gloves", category: "Football", price: "₹600 – ₹2,500", desc: "Premium grip" },
-  { name: "Shin Guards", category: "Football", price: "₹300 – ₹1,200", desc: "Lightweight" },
-  { name: "Football Jersey", category: "Football", price: "₹500 – ₹2,000", desc: "Club jerseys" },
-  { name: "Badminton Racket", category: "Badminton", price: "₹800 – ₹5,000", desc: "Carbon-fibre" },
-  { name: "Shuttlecocks (Pack)", category: "Badminton", price: "₹150 – ₹800", desc: "Feather & nylon" },
-  { name: "Badminton Net", category: "Badminton", price: "₹1,000 – ₹3,000", desc: "Portable" },
-  { name: "Court Shoes", category: "Badminton", price: "₹1,200 – ₹4,000", desc: "Non-marking" },
-  { name: "Gym T-Shirts", category: "Activewear", price: "₹299 – ₹999", desc: "Quick-dry" },
-  { name: "Shorts", category: "Activewear", price: "₹399 – ₹1,200", desc: "Training" },
-  { name: "Tracksuits", category: "Activewear", price: "₹1,000 – ₹3,500", desc: "Full-zip" },
-  { name: "Compression Wear", category: "Activewear", price: "₹500 – ₹1,500", desc: "Support" },
-  { name: "Running Shoes", category: "Shoes", price: "₹1,500 – ₹7,000", desc: "Cushioned" },
-  { name: "Training Shoes", category: "Shoes", price: "₹1,200 – ₹5,000", desc: "Versatile" },
-  { name: "Walking Shoes", category: "Shoes", price: "₹1,000 – ₹4,000", desc: "Lightweight" },
-  { name: "Sports Socks", category: "Accessories", price: "₹150 – ₹500", desc: "Cushioned pack" },
-  { name: "Water Bottles", category: "Accessories", price: "₹200 – ₹800", desc: "Insulated" },
-  { name: "Sports Bags", category: "Accessories", price: "₹800 – ₹3,000", desc: "Duffle & backpack" },
-  { name: "Caps & Headbands", category: "Accessories", price: "₹150 – ₹500", desc: "Sports caps" },
-];
+const products: {
+  name: string;
+  category: string;
+  price: string;
+  desc: string;
+}[] = [];
 
 const categories = ["All", "Cricket", "Football", "Badminton", "Activewear", "Shoes", "Accessories"];
 
@@ -61,7 +39,7 @@ export default function ProductsPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="section-label justify-center mb-5" />
             <h1 className="text-4xl md:text-6xl font-black text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>Our Collection</h1>
-            <p className="text-text-muted text-sm max-w-xl mx-auto">300+ products curated for quality and value.</p>
+            <p className="text-text-muted text-sm max-w-xl mx-auto">Premium sports gear for every athlete.</p>
           </motion.div>
         </div>
       </section>

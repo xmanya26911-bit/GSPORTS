@@ -12,7 +12,6 @@ const items = [
   { img: "accessories.jpg", label: "Accessories", desc: "Complete your kit" },
   { img: "hero-bg.jpg", label: "Premium Brands", desc: "Quality you can trust" },
   { img: "hero-action.jpg", label: "Sports Action", desc: "Gear up for your game" },
-  { img: "cricket.jpg", label: "Cricket Specialists", desc: "Expert guidance" },
 ];
 
 export default function GalleryPage() {
