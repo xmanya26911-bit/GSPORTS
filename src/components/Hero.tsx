@@ -12,7 +12,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden bg-premium-dark">
       {/* Ken Burns Background */}
       <div className="absolute inset-0">
-        <img src="/images/hero-action.jpg" alt="" className="w-full h-full object-cover animate-ken-burns opacity-50" />
+        <img src="/images/hero-cricket-bg.jpg" alt="" className="w-full h-full object-cover animate-ken-burns opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg-dark/95 via-bg-dark/80 to-bg-dark/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
       </div>
