@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, brand, category, description, images, price } = body;
+    const { name, brand, category, description, images, price, features, specifications, highlights, faqs } = body;
 
     // ===== TRIPLE CHECK VALIDATION =====
     const checks: { check: string; passed: boolean; message: string }[] = [];
@@ -116,6 +116,10 @@ export async function POST(request: Request) {
       images: imageUrls,
       price: price || "Visit store for pricing",
       slug,
+      features: Array.isArray(features) ? features : [],
+      specifications: Array.isArray(specifications) ? specifications : [],
+      highlights: Array.isArray(highlights) ? highlights : [],
+      faqs: Array.isArray(faqs) ? faqs : [],
       createdAt: new Date().toISOString(),
       status: "published",
     };

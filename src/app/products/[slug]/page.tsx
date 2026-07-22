@@ -2,7 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Minus, Plus, Star, Truck, Shield, RotateCcw, Check, ChevronRight, Phone, Package } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Star, Truck, Shield, RotateCcw, Check, ChevronRight, Phone, Package, ListChecks, Settings2, HelpCircle, ChevronDown as ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/store/cart";
 
@@ -16,6 +16,10 @@ interface Product {
   price: string;
   slug: string;
   createdAt: string;
+  features?: string[];
+  specifications?: { label: string; value: string }[];
+  highlights?: string[];
+  faqs?: { question: string; answer: string }[];
 }
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -27,7 +31,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const addItem = useCart((s) => s.addItem);
-  const openCart = useCart((s) => s.openCart);
 
   useEffect(() => {
     fetch(`/api/products/by-slug/${slug}`)
@@ -118,6 +121,16 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   if (!product) return null;
 
   const imageList = product.images?.length > 0 ? product.images : ["/images/cricket.jpg"];
+  const hasPrice = product.price && product.price !== "Visit store for pricing";
+  const features = (product.features && product.features.length > 0) ? product.features : [
+    "Handcrafted from premium grade willow",
+    "Professional grade with optimal balance",
+    "Factory-direct pricing — no middlemen",
+    "Made in Kashmir, India",
+  ];
+  const specs = product.specifications || [];
+  const highlights = product.highlights || [];
+  const faqs = product.faqs || [];
 
   return (
     <div className="pt-28 pb-20 min-h-screen">
@@ -133,10 +146,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
         {/* Main Product Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          {/* Left: Image Gallery — Amazon style */}
+          {/* Left: Image Gallery */}
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-24">
-              {/* Main Image */}
               <motion.div
                 key={selectedImage}
                 initial={{ opacity: 0 }}
@@ -144,11 +156,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                 transition={{ duration: 0.3 }}
                 className="relative aspect-square rounded-2xl overflow-hidden bg-bg-alt border border-border"
               >
-                <img
-                  src={imageList[selectedImage]}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
+                <img src={imageList[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
                 {product.brand && (
                   <div className="absolute top-4 left-4 glass rounded-lg px-3 py-1.5 text-xs font-medium text-text">
                     {product.brand}
@@ -156,7 +164,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                 )}
               </motion.div>
 
-              {/* Thumbnails */}
               {imageList.length > 1 && (
                 <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
                   {imageList.map((img, i) => (
@@ -164,9 +171,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                       key={i}
                       onClick={() => setSelectedImage(i)}
                       className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
-                        selectedImage === i
-                          ? "border-accent ring-2 ring-accent/20"
-                          : "border-border hover:border-border-light"
+                        selectedImage === i ? "border-accent ring-2 ring-accent/20" : "border-border hover:border-border-light"
                       }`}
                     >
                       <img src={img} alt={`${product.name} ${i + 1}`} className="w-full h-full object-cover" />
@@ -180,9 +185,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
           {/* Center: Product Info */}
           <div className="lg:col-span-4 space-y-5">
             {/* Brand */}
-            <div className="text-xs font-medium text-accent uppercase tracking-wider">
-              {product.brand}
-            </div>
+            <div className="text-xs font-medium text-accent uppercase tracking-wider">{product.brand}</div>
 
             {/* Title */}
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
@@ -199,47 +202,52 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
               <span className="text-xs text-text-muted">4.0 · 124 reviews</span>
             </div>
 
-            {/* Divider */}
             <div className="h-px bg-border" />
+
+            {/* Highlights (AI-generated) */}
+            {highlights.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {highlights.map((h, i) => (
+                  <span key={i} className="text-[11px] text-accent bg-accent/10 px-3 py-1.5 rounded-full font-medium">
+                    ⭐ {h}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
               <span className="text-3xl md:text-4xl font-bold text-accent">
-                {product.price && product.price !== "Visit store for pricing" ? `₹${product.price}` : product.price}
+                {hasPrice ? `₹${product.price}` : product.price}
               </span>
-              {product.price && product.price !== "Visit store for pricing" && (
+              {hasPrice && (
                 <span className="text-sm text-text-muted line-through">
                   ₹{Math.round(parseInt(product.price.replace(/[^0-9]/g, "")) * 1.15).toLocaleString("en-IN")}
                 </span>
               )}
             </div>
-            {product.price && product.price !== "Visit store for pricing" && (
+            {hasPrice && (
               <p className="text-xs text-success flex items-center gap-1.5">
                 <Check className="w-3.5 h-3.5" /> Inclusive of all taxes
               </p>
             )}
 
-            {/* Divider */}
             <div className="h-px bg-border" />
 
             {/* Description */}
             <div>
               <h2 className="text-sm font-semibold text-text mb-3 uppercase tracking-wider">Description</h2>
-              <p className="text-sm text-text-secondary leading-relaxed whitespace-pre-line">
-                {product.description}
-              </p>
+              <p className="text-sm text-text-secondary leading-relaxed whitespace-pre-line">{product.description}</p>
             </div>
 
-            {/* Features */}
+            {/* Features (AI-generated) */}
             <div>
-              <h2 className="text-sm font-semibold text-text mb-3 uppercase tracking-wider">Key Features</h2>
+              <div className="flex items-center gap-2 mb-3">
+                <ListChecks className="w-4 h-4 text-accent" />
+                <h2 className="text-sm font-semibold text-text uppercase tracking-wider">Key Features</h2>
+              </div>
               <ul className="space-y-2.5">
-                {[
-                  "Handcrafted from premium grade willow",
-                  "Professional grade with optimal balance",
-                  "Factory-direct pricing — no middlemen",
-                  "Made in Kashmir, India",
-                ].map((feat, i) => (
+                {features.map((feat, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-text-secondary">
                     <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     {feat}
@@ -247,27 +255,43 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                 ))}
               </ul>
             </div>
+
+            {/* Specifications (AI-generated) */}
+            {specs.length > 0 && (
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Settings2 className="w-4 h-4 text-accent" />
+                  <h2 className="text-sm font-semibold text-text uppercase tracking-wider">Specifications</h2>
+                </div>
+                <div className="rounded-xl border border-border overflow-hidden">
+                  {specs.map((spec, i) => (
+                    <div key={i} className={`flex items-center justify-between px-4 py-3 text-xs ${i % 2 === 0 ? "bg-bg-alt/30" : ""}`}>
+                      <span className="text-text-muted font-medium">{spec.label}</span>
+                      <span className="text-text font-medium text-right">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Right: Buy Box — Amazon style */}
+          {/* Right: Buy Box */}
           <div className="lg:col-span-3">
             <div className="lg:sticky lg:top-24">
               <div className="glass rounded-2xl border border-border p-6 space-y-5">
-                {/* Price in box */}
+                {/* Price */}
                 <div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-2xl font-bold text-accent">
-                      {product.price && product.price !== "Visit store for pricing" ? `₹${product.price}` : product.price}
+                      {hasPrice ? `₹${product.price}` : product.price}
                     </span>
                   </div>
                   <p className="text-xs text-text-muted mt-1">
-                    {product.price && product.price !== "Visit store for pricing"
-                      ? "Free shipping on orders above ₹2,000"
-                      : "Contact store for pricing"}
+                    {hasPrice ? "Free shipping on orders above ₹2,000" : "Contact store for pricing"}
                   </p>
                 </div>
 
-                {/* Delivery */}
+                {/* Delivery / Warranty / Returns */}
                 <div className="space-y-3 pt-3 border-t border-border">
                   <div className="flex items-center gap-3 text-xs text-text-secondary">
                     <Truck className="w-4 h-4 text-accent shrink-0" />
@@ -296,17 +320,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                 <div className="pt-3 border-t border-border">
                   <label className="block text-xs font-medium text-text-secondary mb-2">Quantity</label>
                   <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-text hover:border-accent/30 transition-colors"
-                    >
+                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-text hover:border-accent/30 transition-colors">
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="text-sm font-semibold text-text w-8 text-center">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-text hover:border-accent/30 transition-colors"
-                    >
+                    <button onClick={() => setQuantity(quantity + 1)} className="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-text hover:border-accent/30 transition-colors">
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
@@ -325,20 +343,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                   <button
                     onClick={handleAddToCart}
                     className={`w-full py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
-                      added
-                        ? "bg-success text-white"
-                        : "bg-accent/10 text-accent hover:bg-accent/20 border border-accent/20"
+                      added ? "bg-success text-white" : "bg-accent/10 text-accent hover:bg-accent/20 border border-accent/20"
                     }`}
                   >
-                    {added ? (
-                      <>
-                        <Check className="w-4 h-4" /> Added to Cart!
-                      </>
-                    ) : (
-                      <>
-                        <ShoppingCart className="w-4 h-4" /> Add to Cart
-                      </>
-                    )}
+                    {added ? <><Check className="w-4 h-4" /> Added to Cart!</> : <><ShoppingCart className="w-4 h-4" /> Add to Cart</>}
                   </button>
                   <button
                     onClick={handleBuyNow}
@@ -350,43 +358,49 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
                 {/* Seller Info */}
                 <div className="pt-3 border-t border-border text-xs space-y-1.5">
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">Seller</span>
-                    <span className="text-text font-medium">Golden Willowe</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">Location</span>
-                    <span className="text-text font-medium">Srinagar, Kashmir</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">Category</span>
-                    <span className="text-text font-medium">Cricket</span>
-                  </div>
+                  <div className="flex justify-between"><span className="text-text-muted">Seller</span><span className="text-text font-medium">Golden Willowe</span></div>
+                  <div className="flex justify-between"><span className="text-text-muted">Location</span><span className="text-text font-medium">Srinagar, Kashmir</span></div>
+                  <div className="flex justify-between"><span className="text-text-muted">Category</span><span className="text-text font-medium">Cricket</span></div>
                 </div>
 
-                {/* Contact */}
-                <a
-                  href="tel:917889342459"
-                  className="flex items-center justify-center gap-2 pt-3 border-t border-border text-xs text-text-muted hover:text-accent transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5" />
-                  Have questions? Call 7889342459
+                <a href="tel:917889342459" className="flex items-center justify-center gap-2 pt-3 border-t border-border text-xs text-text-muted hover:text-accent transition-colors">
+                  <Phone className="w-3.5 h-3.5" /> Have questions? Call 7889342459
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Related Products placeholder */}
-        <div className="mt-20 pt-12 border-t border-border">
-          <h2 className="text-xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-            You May Also Like
-          </h2>
-          <p className="text-sm text-text-muted">
-            <Link href="/products" className="text-accent hover:text-accent-light transition-colors">
-              Browse all products →
-            </Link>
-          </p>
+        {/* FAQs Section (AI-generated) */}
+        {faqs.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 pt-12 border-t border-border"
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <HelpCircle className="w-5 h-5 text-accent" />
+              <h2 className="text-xl font-bold text-text" style={{ fontFamily: "var(--font-playfair)" }}>Frequently Asked Questions</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {faqs.map((faq, i) => (
+                <details key={i} className="group glass rounded-2xl border border-border p-5">
+                  <summary className="text-sm font-medium text-text cursor-pointer flex items-center justify-between gap-4">
+                    {faq.question}
+                    <ChevronDownIcon className="w-4 h-4 text-text-tertiary shrink-0 group-open:rotate-180 transition-transform" />
+                  </summary>
+                  <p className="text-sm text-text-secondary mt-3 leading-relaxed">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Related */}
+        <div className="mt-16 pt-12 border-t border-border">
+          <h2 className="text-xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>You May Also Like</h2>
+          <Link href="/products" className="text-accent hover:text-accent-light transition-colors text-sm">Browse all products →</Link>
         </div>
       </div>
     </div>
