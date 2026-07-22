@@ -131,7 +131,7 @@ export async function POST(request: Request) {
       product: productData,
       url: blob.url,
       message: `✅ ${sanitizedName} is now live on Golden Willowe!`,
-      storeUrl: `https://gsports-beta.vercel.app/products`,
+      storeUrl: `/products`,
     }, { headers: corsHeaders() });
 
   } catch (error) {

@@ -10,6 +10,7 @@ import NoiseOverlay from "@/components/NoiseOverlay";
 import LoadingScreen from "@/components/LoadingScreen";
 import Spotlight from "@/components/Spotlight";
 import CartDrawer from "@/components/CartDrawer";
+import ShowOnPublic from "@/components/ShowOnPublic";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,10 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NoiseOverlay />
         <CustomCursor />
         <ScrollProgress />
-        <Navbar />
+        <ShowOnPublic><Navbar /></ShowOnPublic>
         <main className="min-h-screen">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <ShowOnPublic><Footer /></ShowOnPublic>
+        <ShowOnPublic><WhatsAppButton /></ShowOnPublic>
         <CartDrawer />
       </body>
     </html>
