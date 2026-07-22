@@ -7,12 +7,12 @@ import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const cats = [
-  { title: "Premium Bats", img: "cricket.jpg", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "20+" },
-  { title: "Batting Gloves", img: "cricket.jpg", desc: "Professional-grade gloves for all levels.", count: "15+" },
-  { title: "Kitbags", img: "cricket.jpg", desc: "Durable kitbags for your cricket gear.", count: "10+" },
-  { title: "Keeping Gloves", img: "cricket.jpg", desc: "Wicket-keeping gloves, pro series.", count: "12+" },
-  { title: "Pads &amp; Guards", img: "cricket.jpg", desc: "Leg guards, thighpads &amp; arm guards.", count: "20+" },
-  { title: "Helmets", img: "cricket.jpg", desc: "Premium protective helmets, all sizes.", count: "10+" },
+  { title: "Premium Bats", img: "cat-bats.jpg", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "20+" },
+  { title: "Batting Gloves", img: "cat-gloves.jpg", desc: "Professional-grade gloves for all levels.", count: "15+" },
+  { title: "Kitbags", img: "cat-kitbags.jpg", desc: "Durable kitbags for your cricket gear.", count: "10+" },
+  { title: "Keeping Gloves", img: "cat-keeping.jpg", desc: "Wicket-keeping gloves, pro series.", count: "12+" },
+  { title: "Pads &amp; Guards", img: "cat-pads.jpg", desc: "Leg guards, thighpads &amp; arm guards.", count: "20+" },
+  { title: "Helmets", img: "cat-helmets.jpg", desc: "Premium protective helmets, all sizes.", count: "10+" },
 ];
 
 function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
