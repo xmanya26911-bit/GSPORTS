@@ -2,37 +2,50 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Bell, Maximize2, LogOut, User, Settings, ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Bell, Maximize2, LogOut, User, Settings, ChevronDown, LayoutDashboard, Package, ShoppingCart, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 
+const pageTitles: Record<string, { label: string; icon: typeof LayoutDashboard }> = {
+  "/admin": { label: "Dashboard", icon: LayoutDashboard },
+  "/admin/products": { label: "Products", icon: Package },
+  "/admin/products/new": { label: "AI Product Generator", icon: Sparkles },
+  "/admin/orders": { label: "Orders", icon: ShoppingCart },
+  "/admin/customers": { label: "Customers", icon: Users },
+};
+
 export default function TopNav() {
-  const [searchOpen, setSearchOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const pathname = usePathname();
+  const page = pageTitles[pathname] || { label: "Admin", icon: LayoutDashboard };
+  const Icon = page.icon;
 
   return (
     <header className="sticky top-0 z-30 h-16 border-b border-border bg-bg/80 backdrop-blur-xl">
       <div className="flex items-center justify-between h-full px-6">
-        {/* Search */}
-        <button
-          onClick={() => setSearchOpen(true)}
-          className="flex items-center gap-3 px-4 py-2 rounded-xl bg-bg border border-border text-text-tertiary text-sm w-full max-w-md hover:border-border-light transition-colors"
-        >
-          <Search className="w-4 h-4" />
-          <span>Search products, orders, customers...</span>
-          <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-border text-text-tertiary">⌘K</span>
-        </button>
+        {/* Page Title */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+            <Icon className="w-4 h-4 text-accent" />
+          </div>
+          <div>
+            <h1 className="text-sm font-semibold text-text">{page.label}</h1>
+            <p className="text-[10px] text-text-tertiary capitalize">{pathname === "/admin" ? "Overview" : pathname.replace("/admin/", "").replace("/", " / ")}</p>
+          </div>
+        </div>
 
         <div className="flex items-center gap-2">
           {/* Fullscreen */}
           <button
             onClick={() => document.documentElement.requestFullscreen()}
             className="w-9 h-9 rounded-xl flex items-center justify-center text-text-secondary hover:bg-bg-hover transition-colors"
+            title="Fullscreen"
           >
             <Maximize2 className="w-4 h-4" />
           </button>
 
           {/* Notifications */}
-          <button className="relative w-9 h-9 rounded-xl flex items-center justify-center text-text-secondary hover:bg-bg-hover transition-colors">
+          <button className="relative w-9 h-9 rounded-xl flex items-center justify-center text-text-secondary hover:bg-bg-hover transition-colors" title="Notifications">
             <Bell className="w-4 h-4" />
             <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-danger" />
           </button>
@@ -43,7 +56,7 @@ export default function TopNav() {
               onClick={() => setProfileOpen(!profileOpen)}
               className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-xl hover:bg-bg-hover transition-colors"
             >
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-accent to-purple flex items-center justify-center text-[11px] font-bold text-white">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-[11px] font-bold text-white">
                 IA
               </div>
               <div className="text-left hidden sm:block">
@@ -69,51 +82,15 @@ export default function TopNav() {
                   <Link href="/admin/settings" className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-text-secondary hover:bg-bg-hover transition-colors">
                     <Settings className="w-4 h-4" /> Settings
                   </Link>
-                  <Link href="/auth/login" className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-danger hover:bg-danger/5 transition-colors">
+                  <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-danger hover:bg-danger/5 transition-colors">
                     <LogOut className="w-4 h-4" /> Sign Out
-                  </Link>
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
         </div>
       </div>
-
-      {/* Search Overlay */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
-            onClick={() => setSearchOpen(false)}
-          >
-            <motion.div
-              initial={{ y: -20, opacity: 0, scale: 0.98 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -20, opacity: 0, scale: 0.98 }}
-              className="max-w-xl mx-auto mt-24"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="glass rounded-2xl border border-border p-2 shadow-2xl">
-                <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-                  <Search className="w-5 h-5 text-text-tertiary" />
-                  <input
-                    autoFocus
-                    placeholder="Search products, orders, customers..."
-                    className="flex-1 bg-transparent text-text text-sm outline-none placeholder:text-text-tertiary"
-                  />
-                  <span className="text-[10px] px-2 py-1 rounded bg-border text-text-tertiary">ESC</span>
-                </div>
-                <div className="p-2 text-text-tertiary text-xs text-center py-8">
-                  Start typing to search...
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }
