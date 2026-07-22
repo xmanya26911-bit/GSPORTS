@@ -46,9 +46,9 @@ export default function Hero() {
             </motion.div>
 
             {/* Split Text Headline */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text leading-[0.9] tracking-tight mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text leading-[1.0] tracking-[-0.01em] mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
               {headline.map((word, i) => (
-                <span key={word} className="reveal-text">
+                <span key={word} className="reveal-text" style={i > 0 ? { marginLeft: "0.35em" } : undefined}>
                   <motion.span
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,6 @@ export default function Hero() {
                   >
                     {word}
                   </motion.span>
-                  {i < headline.length - 1 && " "}
                 </span>
               ))}
               <span className="block mt-2">

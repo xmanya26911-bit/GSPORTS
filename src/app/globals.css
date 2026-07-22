@@ -295,11 +295,14 @@
   vertical-align: bottom;
 }
 
+.reveal-text {
+  display: inline-block;
+}
+
 .reveal-text span {
   display: inline-block;
   animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
-  margin-right: 0.12em;
 }
 
 /* ===== SPOTLIGHT ===== */

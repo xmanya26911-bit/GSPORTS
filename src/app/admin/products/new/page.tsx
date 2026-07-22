@@ -264,29 +264,14 @@ Generate ONLY a product description. Make it persuasive, professional, and suita
               <p className="text-[10px] text-text-tertiary mt-1">You can edit this if the AI gets it wrong</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-text-secondary mb-1.5">Brand *</label>
-                <input
-                  value={brand}
-                  onChange={(e) => setBrand(e.target.value)}
-                  className="input-field"
-                  placeholder="e.g. SS, Nike, Yonex"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-text-secondary mb-1.5">Category *</label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="input-field"
-                >
-                  <option value="">Select</option>
-                  {["Cricket", "Football", "Badminton", "Activewear", "Shoes", "Accessories"].map((c) => (
-                    <option key={c} value={c}>{c}</option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label className="block text-xs font-medium text-text-secondary mb-1.5">Brand *</label>
+              <input
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                className="input-field"
+                placeholder="e.g. SS, Nike, Yonex"
+              />
             </div>
 
             <div>

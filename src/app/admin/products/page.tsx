@@ -43,7 +43,7 @@ export default function ProductsPage() {
     if (!confirm(`Delete "${name}"? This will remove it from the live store.`)) return;
     setDeleting(id);
     try {
-      const res = await fetch(`https://gsports-beta.vercel.app/api/products/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/products/${id}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
         setProducts((prev) => prev.filter((p) => p.id !== id));

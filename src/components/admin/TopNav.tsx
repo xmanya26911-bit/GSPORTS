@@ -15,7 +15,7 @@ export default function TopNav() {
         {/* Search */}
         <button
           onClick={() => setSearchOpen(true)}
-          className="flex items-center gap-3 px-4 py-2 rounded-xl bg-bg-input border border-border text-text-tertiary text-sm w-full max-w-md hover:border-border-light transition-colors"
+          className="flex items-center gap-3 px-4 py-2 rounded-xl bg-bg border border-border text-text-tertiary text-sm w-full max-w-md hover:border-border-light transition-colors"
         >
           <Search className="w-4 h-4" />
           <span>Search products, orders, customers...</span>
