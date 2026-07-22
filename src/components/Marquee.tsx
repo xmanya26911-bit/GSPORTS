@@ -4,8 +4,8 @@
 import { motion } from "framer-motion";
 
 const brands = [
-  "Cricket", "Football", "Badminton", "Activewear",
-  "Cricket", "Football", "Badminton", "Activewear",
+  "English Willow", "Kashmir Willow", "Premium Bats", "Handcrafted",
+  "English Willow", "Kashmir Willow", "Premium Bats", "Handcrafted",
 ];
 
 export default function Marquee() {

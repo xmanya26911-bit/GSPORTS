@@ -7,12 +7,12 @@ import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const cats = [
-  { title: "Cricket", img: "cricket.jpg", desc: "Bats, pads, gloves & full kits", count: "50+" },
-  { title: "Football", img: "football.jpg", desc: "Boots, balls, jerseys & goalie gear", count: "30+" },
-  { title: "Badminton", img: "badminton.jpg", desc: "Rackets, shuttlecocks, nets", count: "25+" },
-  { title: "Activewear", img: "activewear.jpg", desc: "T-shirts, shorts, tracksuits", count: "100+" },
-  { title: "Shoes", img: "shoes.jpg", desc: "Running, training & sports footwear", count: "60+" },
-  { title: "Accessories", img: "accessories.jpg", desc: "Bags, bottles, caps & more", count: "40+" },
+  { title: "Premium Bats", img: "cricket.jpg", desc: "English & Kashmir willow bats, handcrafted", count: "20+" },
+  { title: "Batting Gloves", img: "football.jpg", desc: "Professional-grade gloves for all levels", count: "15+" },
+  { title: "Kitbags", img: "badminton.jpg", desc: "Durable kitbags for your cricket gear", count: "10+" },
+  { title: "Keeping Gloves", img: "activewear.jpg", desc: "Wicket-keeping gloves, pro series", count: "12+" },
+  { title: "Pads & Guards", img: "shoes.jpg", desc: "Leg guards, thighpads & arm guards", count: "20+" },
+  { title: "Helmets", img: "accessories.jpg", desc: "Premium protective helmets, all sizes", count: "10+" },
 ];
 
 function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
@@ -110,10 +110,10 @@ export default function Categories() {
           >
             Everything for
             <br />
-            <span className="text-gold-gradient">Your Game</span>
+            <span className="text-gold-gradient">Your Cricket</span>
           </h2>
           <p className="text-text-muted max-w-xl text-sm leading-relaxed">
-            300+ products across six categories. Every item handpicked for quality and performance.
+            Handcrafted cricket equipment — from premium bats to protective gear. Every product carries our quality promise.
           </p>
         </motion.div>
 

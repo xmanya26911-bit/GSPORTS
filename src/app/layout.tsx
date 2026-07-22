@@ -23,19 +23,19 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "G SPORTS — Premium Sports Equipment, Himatnagar",
+  title: "Golden Willowe Sports — Premium Cricket Bats | Kashmir & English Willow",
   description:
-    "Himatnagar's premier sports store | Cricket, Football, Badminton, Activewear & accessories. Family-owned since 2014. 4.7★ rated. Visit us today!",
+    "Himatnagar's premier cricket bat manufacturer | Premium English & Kashmir willow bats. Handcrafted by Imran Ali. 15+ years of excellence.",
   keywords: [
-    "sports store Himatnagar", "cricket bats", "football shoes", "badminton rackets",
-    "sports equipment Gujarat", "G SPORTS", "Ganpatbhai Prajapati", "Sabarkantha sports",
+    "cricket bats Himatnagar", "English willow bats", "Kashmir willow bats",
+    "sports equipment Gujarat", "Golden Willowe Sports", "Imran Ali", "Sabarkantha cricket",
     "activewear", "sports shoes",
   ],
   openGraph: {
-    title: "G SPORTS — Premium Sports Equipment Store",
-    description: "Himatnagar's most trusted sports destination since 2014. 300+ products, 4.7★ rating.",
+    title: "Golden Willowe Sports — Premium Cricket Bats",
+    description: "Himatnagar's premier cricket bat maker since 2010. Handcrafted English & Kashmir willow bats, factory-direct prices.",
     url: "https://gsports-beta.vercel.app",
-    siteName: "G SPORTS",
+    siteName: "Golden Willowe Sports",
     type: "website",
   },
 };

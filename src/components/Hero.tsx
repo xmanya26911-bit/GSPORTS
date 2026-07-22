@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, Star, Phone } from "lucide-react";
 import Link from "next/link";
 
-const headline = ["Your", "Premier", "Sports Destination"];
+const headline = ["Crafting", "Excellence", "in Every Bat"];
 
 export default function Hero() {
   return (
@@ -42,7 +42,7 @@ export default function Hero() {
                   <Star key={i} className="w-3 h-3 text-accent fill-accent" />
                 ))}
               </div>
-              <span className="text-text-muted text-xs tracking-wider">4.7 · 253 reviews</span>
+              <span className="text-text-muted text-xs tracking-wider">100% · Quality Assured</span>
             </motion.div>
 
             {/* Split Text Headline */}
@@ -81,8 +81,8 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="text-text-muted text-base md:text-lg max-w-lg leading-relaxed mb-10"
             >
-              From cricket bats to football boots — premium sports equipment, 
-              expert guidance, and the warmth of family. Trusted since 2014.
+              Premium English & Kashmir willow bats, handcrafted with precision. 
+                            Factory-direct pricing — no middlemen, just pure quality.
             </motion.p>
 
             {/* CTAs */}
@@ -105,7 +105,7 @@ export default function Hero() {
                 className="group inline-flex items-center gap-2 glass rounded-xl px-8 py-4 text-sm font-medium text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300 interactive"
               >
                 <Phone className="w-4 h-4" />
-                074052 08523
+                788934 2459
               </a>
             </motion.div>
 
@@ -117,10 +117,10 @@ export default function Hero() {
               className="flex items-center gap-6 mt-14"
             >
               <span className="text-text-muted/40 text-xs">Himatnagar, Gujarat</span>
-              <span className="w-px h-3 bg-border" />
-              <span className="text-text-muted/40 text-xs">300+ Products</span>
-              <span className="w-px h-3 bg-border" />
-              <span className="text-text-muted/40 text-xs">Family Owned Since 2014</span>
+                            <span className="w-px h-3 bg-border" />
+                            <span className="text-text-muted/40 text-xs">10000+ Happy Customers</span>
+                            <span className="w-px h-3 bg-border" />
+                            <span className="text-text-muted/40 text-xs">Family Owned Since 2010</span>
             </motion.div>
           </div>
         </div>

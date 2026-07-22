@@ -43,10 +43,10 @@ export default function Navbar() {
                 className="text-xl font-black tracking-tight text-text"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                G<span className="text-accent">.</span>SPORTS
+                Golden<span className="text-accent">.</span>Willowe
               </span>
               <span className="block text-[10px] text-text-muted tracking-[0.3em] uppercase mt-[-2px]">
-                Since 2014
+                Est. 2010
               </span>
               <div className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-500" />
             </Link>

@@ -46,7 +46,7 @@ export default function Testimonials() {
             What Our Customers Say
           </h2>
           <p className="text-text-muted text-sm max-w-lg mx-auto">
-            4.7 stars across 253 reviews — here&apos;s what people love about G SPORTS.
+            Hear from our customers about the Golden Willowe experience.
           </p>
         </motion.div>
 

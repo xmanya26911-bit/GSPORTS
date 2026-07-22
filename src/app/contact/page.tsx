@@ -6,7 +6,7 @@ import { MapPin, Phone, Clock, Send } from "lucide-react";
 
 const hours = [
   { day: "Mon – Sat", time: "9:00 AM – 9:00 PM" },
-  { day: "Sunday", time: "10:00 AM – 8:00 PM" },
+  { day: "Sunday", time: "10:00 AM – 5:00 PM" },
 ];
 
 export default function ContactPage() {
@@ -29,7 +29,7 @@ export default function ContactPage() {
             {/* Map */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card rounded-2xl overflow-hidden h-[450px]">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.887!2d73.126!3d23.599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sG%20SPORTS!5e0!3m2!1sen!2sin!4v1"
-                width="100%" height="100%" style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg) saturate(0.5)" }} allowFullScreen loading="lazy" title="G SPORTS Location" />
+                width="100%" height="100%" style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg) saturate(0.5)" }} allowFullScreen loading="lazy" title="Golden Willowe Sports Location" />
             </motion.div>
 
             {/* Info */}
@@ -37,11 +37,11 @@ export default function ContactPage() {
               <div className="glass-card rounded-2xl p-8">
                 <div className="flex items-start gap-4"><div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20"><MapPin className="w-5 h-5 text-accent" /></div>
                   <div><h4 className="font-bold text-text text-sm mb-1">Address</h4><p className="text-text-muted text-sm leading-relaxed">1/2, Keshavam Crest, FF, behind Pratham Square, opp. Swaminar Mandir, Anant Vihar Society, Himatnagar, Gujarat 383001</p>
-                    <a href="https://maps.google.com/?q=G+SPORTS+Himatnagar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light">Get Directions →</a></div></div>
+                    <a href="https://maps.google.com/?q=Golden+Willowe+Sports+Himatnagar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light">Get Directions →</a></div></div>
               </div>
               <div className="glass-card rounded-2xl p-8">
                 <div className="flex items-start gap-4"><div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20"><Phone className="w-5 h-5 text-accent" /></div>
-                  <div><h4 className="font-bold text-text text-sm mb-1">Phone</h4><a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light">074052 08523</a>
+                  <div><h4 className="font-bold text-text text-sm mb-1">Phone</h4><a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light">788934 2459</a>
                     <p className="text-text-muted text-xs mt-1">Call or WhatsApp</p></div></div>
               </div>
               <div className="glass-card rounded-2xl p-8">
@@ -50,7 +50,7 @@ export default function ContactPage() {
               </div>
 
               {/* WhatsApp CTA */}
-              <a href="https://wa.me/917405208523" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/917889342459" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-accent text-bg-dark px-6 py-4 rounded-xl font-semibold text-sm hover:bg-accent-light transition-all w-full">
                 <Send className="w-4 h-4" /> Message us on WhatsApp
               </a>

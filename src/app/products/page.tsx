@@ -3,26 +3,41 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Search } from "lucide-react";
-import { useState } from "react";
+import { Search, Package } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const categoryImages: Record<string, string> = {
   Cricket: "cricket.jpg", Football: "football.jpg", Badminton: "badminton.jpg",
   Activewear: "activewear.jpg", Shoes: "shoes.jpg", Accessories: "accessories.jpg",
 };
 
-const products: {
-  name: string;
-  category: string;
-  price: string;
-  desc: string;
-}[] = [];
-
 const categories = ["All", "Cricket", "Football", "Badminton", "Activewear", "Shoes", "Accessories"];
+
+interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  category: string;
+  description: string;
+  price: string;
+  images: string[];
+  slug: string;
+  createdAt: string;
+}
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products || []))
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = products.filter(
     (p) =>
@@ -64,29 +79,54 @@ export default function ProductsPage() {
           </div>
         </motion.div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filtered.map((product, index) => (
-            <motion.div key={product.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}
-              className="glass-card rounded-xl overflow-hidden group">
-              <div className="h-40 overflow-hidden">
-                <img src={`/images/${categoryImages[product.category]}`} alt={product.category}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-text text-sm mb-1">{product.name}</h3>
-                <p className="text-text-muted text-xs mb-3">{product.desc}</p>
-                <div className="flex items-center justify-between pt-2 border-t border-border">
-                  <span className="text-accent font-semibold text-sm">{product.price}</span>
-                  <span className="text-text-muted/40 text-[11px] uppercase tracking-wider">{product.category}</span>
+        {/* Loading */}
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="glass-card rounded-xl overflow-hidden">
+                <div className="h-40 skeleton" />
+                <div className="p-4 space-y-2">
+                  <div className="h-4 skeleton w-3/4" />
+                  <div className="h-3 skeleton w-1/2" />
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
-        {filtered.length === 0 && (
-          <div className="text-center py-20 text-text-muted/50"><p className="text-sm">No products found.</p></div>
+        {/* Products Grid */}
+        {!loading && filtered.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {filtered.map((product, index) => (
+              <motion.div key={product.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}
+                className="glass-card rounded-xl overflow-hidden group">
+                <div className="h-40 overflow-hidden">
+                  <img src={product.images?.[0] ? product.images[0] : `/images/${categoryImages[product.category] || "hero-bg.jpg"}`} alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-text text-sm mb-1">{product.name}</h3>
+                  <p className="text-text-muted text-xs mb-1">{product.brand}</p>
+                  <p className="text-text-muted/50 text-[11px] line-clamp-2 mb-3">{product.description}</p>
+                  <div className="flex items-center justify-between pt-2 border-t border-border">
+                    <span className="text-accent font-semibold text-sm">{product.price}</span>
+                    <span className="text-text-muted/40 text-[11px] uppercase tracking-wider">{product.category}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Empty state */}
+        {!loading && filtered.length === 0 && (
+          <div className="text-center py-20">
+            <div className="w-16 h-16 rounded-2xl bg-bg-hover flex items-center justify-center mx-auto mb-4">
+              <Package className="w-8 h-8 text-text-muted/30" />
+            </div>
+            <p className="text-sm text-text-muted/50 mb-1">No products yet</p>
+            <p className="text-xs text-text-muted/30">Products will appear here once added through the admin panel</p>
+          </div>
         )}
 
         {/* CTA */}

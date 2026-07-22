@@ -1,29 +1,28 @@
-
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Shield, Star, Users, Award, ChevronRight } from "lucide-react";
+import { Award, Shield, Star, Users, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const values = [
-  { icon: Heart, title: "Customer First", desc: "Every customer is family. We advise honestly, never push unnecessary purchases." },
-  { icon: Shield, title: "Quality Guaranteed", desc: "Only genuine, branded products verified before they hit our shelves." },
-  { icon: Star, title: "Best Prices", desc: "Fair pricing with no hidden costs. Sports gear for everyone." },
-  { icon: Users, title: "Expert Guidance", desc: "Ganpatbhai knows sports inside out. Let us help you find the perfect gear." },
+  { icon: Shield, title: "Premium Willow", desc: "Hand-selected English and Kashmir willow from the finest groves. Each bat is crafted from wood with superior grain structure." },
+  { icon: Star, title: "Factory Direct", desc: "No middlemen. We manufacture and sell directly — premium quality at the most competitive prices." },
+  { icon: Users, title: "Expert Craftsmanship", desc: "15+ years of bat-making experience. Imran Ali personally oversees every bat that leaves the workshop." },
+  { icon: Award, title: "100% Quality", desc: "Every bat meets our strict quality standards. Balanced, durable, and performance-tested." },
 ];
 
 const timeline = [
-  { year: "2014", event: "G SPORTS founded in Himatnagar" },
-  { year: "2016", event: "Expanded cricket & activewear" },
-  { year: "2018", event: "Became Sabarkantha's go-to sports store" },
-  { year: "2020", event: "5000+ customers — 4.7★ rating" },
-  { year: "2024", event: "10+ years of serving with pride" },
+  { year: "2010", event: "Golden Willowe founded in Himatnagar" },
+  { year: "2013", event: "Expanded to English willow bats" },
+  { year: "2016", event: "Became Sabarkantha's premier bat maker" },
+  { year: "2020", event: "10000+ happy customers served" },
+  { year: "2026", event: "15+ years of crafting excellence" },
 ];
 
 export default function AboutPage() {
   return (
     <div className="pt-28">
-      {/* Hero Image Section */}
+      {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
         <div className="absolute inset-0"><img src="/images/hero-bg.jpg" alt="" className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-bg-dark/90 via-bg-dark/80 to-bg-dark/60" /></div>
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
@@ -31,10 +30,10 @@ export default function AboutPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="section-label mb-5" />
             <h1 className="text-4xl md:text-7xl font-black text-text" style={{ fontFamily: "var(--font-playfair)" }}>
-              About G SPORTS
+              About Golden Willowe
             </h1>
             <p className="text-text-muted text-sm md:text-base max-w-xl mt-4 leading-relaxed">
-              Himatnagar&apos;s most trusted sports destination — built on passion, powered by kindness.
+              Himatnagar's premier cricket bat manufacturer — handcrafting excellence since 2010.
             </p>
           </motion.div>
         </div>
@@ -47,12 +46,12 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="section-label mb-5">Our Story</div>
               <h2 className="text-3xl md:text-5xl font-black text-text mt-3 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-                A Decade of Serving<br /><span className="text-gold-gradient">Himatnagar&apos;s Athletes</span>
+                Crafting Dreams,<br /><span className="text-gold-gradient">One Bat at a Time</span>
               </h2>
               <div className="space-y-4 text-text-muted text-sm leading-relaxed">
-                <p>Founded by <strong className="text-text">Ganpatbhai Prajapati</strong> with a simple mission: make quality sports gear accessible to every athlete in the region.</p>
-                <p>From school children buying their first cricket bat to professional athletes — over 10,000 customers served, 300+ products, and still growing.</p>
-                <p>What sets us apart isn&apos;t the range — it&apos;s the warmth. Treat every customer like family, give honest advice, never compromise on quality.</p>
+                <p>Founded by <strong className="text-text">Mr. Imran Ali</strong> with a simple mission: create the finest cricket bats that every player deserves — from school children to professionals.</p>
+                <p>What started as a small workshop in Himatnagar has grown into one of Gujarat's most trusted bat-making brands. 15+ years, 10,000+ happy customers, and every bat still handcrafted with the same care as the first.</p>
+                <p>We source premium English and Kashmir willow directly from the groves, season it to perfection, and shape each bat with expert hands. No shortcuts, no compromises — just pure cricketing excellence.</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -81,7 +80,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <div className="section-label justify-center mb-5" />
-            <h2 className="text-3xl md:text-5xl font-black text-text" style={{ fontFamily: "var(--font-playfair)" }}>What Drives Us</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-text" style={{ fontFamily: "var(--font-playfair)" }}>Why Golden Willowe</h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {values.map((val, i) => (
@@ -99,10 +98,11 @@ export default function AboutPage() {
       <section className="py-28 px-4 sm:px-6 lg:px-8 text-center bg-premium-section">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20"><Heart className="w-6 h-6 text-accent" /></div>
-            <h2 className="text-3xl md:text-5xl font-black text-text mb-5" style={{ fontFamily: "var(--font-playfair)" }}>Meet the Man Behind the Store</h2>
-            <p className="text-text-muted text-sm max-w-2xl mx-auto leading-relaxed mb-8">Ganpatbhai Prajapati isn&apos;t just a shopkeeper — he&apos;s a mentor, a guide, and a friend to every customer. His recommendations come from genuine expertise and care.</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-accent text-bg-dark px-6 py-3 rounded-xl text-sm font-semibold hover:bg-accent-light transition-all">Visit the Store <ChevronRight className="w-4 h-4" /></Link>
+            <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20"><Award className="w-6 h-6 text-accent" /></div>
+            <h2 className="text-3xl md:text-5xl font-black text-text mb-5" style={{ fontFamily: "var(--font-playfair)" }}>Meet the Craftsman</h2>
+            <p className="text-text-muted text-sm max-w-2xl mx-auto leading-relaxed mb-4">Mr. Imran Ali — 15+ years of bat-making mastery. Every bat from Golden Willowe carries his personal touch and commitment to perfection.</p>
+            <p className="text-text-muted text-xs italic mb-8">"Crafting dreams, one bat at a time."</p>
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-accent text-bg-dark px-6 py-3 rounded-xl text-sm font-semibold hover:bg-accent-light transition-all">Order Your Bat <ChevronRight className="w-4 h-4" /></Link>
           </motion.div>
         </div>
       </section>

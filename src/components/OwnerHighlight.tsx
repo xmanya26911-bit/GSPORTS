@@ -63,20 +63,16 @@ export default function OwnerHighlight() {
           <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20">
             <Heart className="w-6 h-6 text-accent" />
           </div>
-          <span className="text-accent text-xs font-medium uppercase tracking-[0.3em]">The Face of G SPORTS</span>
+          <span className="text-accent text-xs font-medium uppercase tracking-[0.3em]">Message from Our CEO</span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-            Ganpatbhai Prajapati
+            Mr. Imran Ali
           </h2>
           <p className="text-text-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
-            &ldquo;Your work speaks volumes of the kind of man you are — efficient, organized and result-oriented. 
-            The owner Ganpatbhai Prajapati, he&apos;s very humble and kind man.&rdquo;
+            &ldquo;Crafting dreams, one bat at a time. Every piece of willow that leaves our workshop carries the passion of Himatnagar&apos;s finest craftsmen.&rdquo;
           </p>
-          <div className="flex items-center justify-center gap-1 mb-12">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 text-accent fill-accent" />
-            ))}
-            <span className="text-text-muted text-xs ml-2">4.7★ · 253 reviews</span>
-          </div>
+          <div className="text-text-muted text-sm mb-12">
+                      Crafting Excellence Since 2010
+                    </div>
         </motion.div>
 
         {/* Counters */}
@@ -87,13 +83,13 @@ export default function OwnerHighlight() {
           className="grid grid-cols-3 gap-6 max-w-2xl mx-auto"
         >
           <div className="glass-card rounded-2xl p-8 py-10">
-            <AnimatedCounter end={10} suffix="+" label="Years of Service" />
+            <AnimatedCounter end={15} suffix="+" label="Years of Experience" />
           </div>
           <div className="glass-card rounded-2xl p-8 py-10">
-            <AnimatedCounter end={1000} suffix="+" label="Happy Customers" />
+            <AnimatedCounter end={10000} suffix="+" label="Happy Customers" />
           </div>
           <div className="glass-card rounded-2xl p-8 py-10">
-            <AnimatedCounter end={300} suffix="+" label="Products in Store" />
+            <AnimatedCounter end={100} suffix="%" label="Quality Assured" />
           </div>
         </motion.div>
       </div>

@@ -13,13 +13,12 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <span className="text-2xl font-black tracking-tight text-text" style={{ fontFamily: "var(--font-playfair)" }}>
-                G<span className="text-accent">.</span>SPORTS
+                Golden<span className="text-accent">.</span>Willowe
               </span>
-              <span className="block text-[10px] text-text-muted tracking-[0.3em] uppercase mt-[-2px]">Since 2014</span>
+              <span className="block text-[10px] text-text-muted tracking-[0.3em] uppercase mt-[-2px]">Est. 2010</span>
             </Link>
             <p className="text-text-muted text-sm leading-relaxed mt-5 max-w-sm">
-              Himatnagar&apos;s most trusted sports destination. Family-owned, quality-focused, 
-              and driven by a love for the game.
+              Himatnagar&apos;s premier cricket bat manufacturer. Handcrafted premium English &amp; Kashmir willow bats since 2010.
             </p>
           </div>
 
@@ -55,13 +54,13 @@ export default function Footer() {
                 Himatnagar, Gujarat 383001
               </p>
               <a href="tel:07405208523" className="block text-accent hover:text-accent-light transition-colors">
-                074052 08523
+                788934 2459
               </a>
               <div className="flex items-center gap-2 text-text-muted text-xs">
-                <span className="text-accent">Mon – Sat</span> 9:00 AM – 9:00 PM
+                <span className="text-accent">Mon – Sat</span> 9:00 AM – 7:00 PM
               </div>
               <div className="flex items-center gap-2 text-text-muted text-xs">
-                <span className="text-accent">Sunday</span> 10:00 AM – 8:00 PM
+                <span className="text-accent">Sunday</span> 10:00 AM – 5:00 PM
               </div>
             </div>
           </div>
@@ -69,8 +68,8 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted/50">
-          <p>© {new Date().getFullYear()} G SPORTS. All rights reserved.</p>
-          <p>Built with passion for the game.</p>
+          <p>© {new Date().getFullYear()} Golden Willowe Sports. All rights reserved.</p>
+          <p>Crafting dreams, one bat at a time.</p>
         </div>
       </div>
     </footer>

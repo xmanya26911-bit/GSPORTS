@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, Phone } from "lucide-react";
 
 const hours = [
-  { day: "Mon – Sat", time: "9:00 AM – 9:00 PM" },
-  { day: "Sunday", time: "10:00 AM – 8:00 PM" },
+  { day: "Mon – Sat", time: "9:00 AM – 7:00 PM" },
+  { day: "Sunday", time: "10:00 AM – 5:00 PM" },
 ];
 
 export default function Location() {
@@ -21,8 +21,8 @@ export default function Location() {
         >
           <div className="section-label mb-5">Visit Us</div>
           <h2 className="text-3xl md:text-5xl font-black text-text mt-3" style={{ fontFamily: "var(--font-playfair)" }}>
-            Find G SPORTS
-          </h2>
+                      Find Golden Willowe
+                    </h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -41,7 +41,7 @@ export default function Location() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="G SPORTS Location"
+              title="Golden Willowe Sports Location"
             />
           </motion.div>
 
@@ -66,7 +66,7 @@ export default function Location() {
                     Himatnagar, Gujarat 383001
                   </p>
                   <a
-                    href="https://maps.google.com/?q=G+SPORTS+Himatnagar"
+                    href="https://maps.google.com/?q=Golden+Willowe+Sports+Himatnagar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light transition-colors"
@@ -102,7 +102,7 @@ export default function Location() {
                 <div>
                   <h4 className="font-bold text-text text-sm mb-1">Phone</h4>
                   <a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light transition-colors">
-                    074052 08523
+                    788934 2459
                   </a>
                 </div>
               </div>
