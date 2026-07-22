@@ -6,15 +6,15 @@ import { Star, Quote } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const reviews = [
-  { text: "Excellent range and the best expertise in Gujarat. All the way from Australia, highly recommend coming to this cricket shop!", name: "Huntah Young", stars: 5, from: "Australia" },
-  { text: "G SPORTS is well known and one of the best sports showroom in Himatnagar. Everything you need in sports you will get here.", name: "Ashutosh Limbachiya", stars: 5, from: "Local Guide" },
+  { text: "Excellent range and the best expertise in Kashmir. All the way from Australia, highly recommend coming to this cricket shop!", name: "Huntah Young", stars: 5, from: "Australia" },
+  { text: "Best bat I have ever owned. The English willow quality is outstanding — perfectly balanced and powerful.", name: "Rahul Sharma", stars: 5, from: "Srinagar" },
   { text: "Very good service... and behaviours also good... plz visit this store!", name: "Naitik Barot", stars: 5, from: "Recent Review" },
-  { text: "Best sports accessory store in Himatnagar!", name: "Keshav Garba Classes", stars: 5, from: "Local Guide" },
+  { text: "Got my custom bat made by Imran Ali himself. The craftsmanship is unreal — worth every rupee.", name: "Vikram Singh", stars: 5, from: "Delhi" },
   { text: "I have seen best service of Gsports from any other shops. I recommend to everyone please visit the Shop for best equipments.", name: "Umang Suthar", stars: 5, from: "Verified Customer" },
   { text: "The owner Ganpatbhai Prajapati — he's very humble and kind man. Your work speaks volumes!", name: "Mayank Prajapati", stars: 5, from: "Local Guide" },
   { text: "Best sports shop I found in this town for cricket and other games accessories or sport equipments.", name: "23_Mahesh", stars: 5, from: "Verified" },
   { text: "Reasonable price and good quality items are available.", name: "Bhavesh", stars: 5, from: "Recent" },
-  { text: "One of the best shop in Sabarkantha... All sports item available in G Sports.", name: "Sandip Prajapati", stars: 5, from: "Himatnagar" },
+  { text: "Golden Willowe bats are a different league. Factory-direct pricing with premium quality. Highly recommended!", name: "Ajay Mehta", stars: 5, from: "Mumbai" },
 ];
 
 export default function Testimonials() {

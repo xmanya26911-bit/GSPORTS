@@ -68,8 +68,8 @@ export default function Hero() {
                     transition={{ delay: 0.75, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="text-base md:text-lg font-sans font-normal text-text-muted tracking-normal"
                   >
-                    in Himatnagar
-                  </motion.span>
+                    in Srinagar, Kashmir
+                                      </motion.span>
                 </span>
               </span>
             </h1>
@@ -101,12 +101,11 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-light to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
               <a
-                href="tel:07405208523"
+                href="tel:917889342459"
                 className="group inline-flex items-center gap-2 glass rounded-xl px-8 py-4 text-sm font-medium text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300 interactive"
               >
                 <Phone className="w-4 h-4" />
-                788934 2459
-              </a>
+                7889342459</a>
             </motion.div>
 
             {/* Bottom info */}
@@ -116,7 +115,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="flex items-center gap-6 mt-14"
             >
-              <span className="text-text-muted/40 text-xs">Himatnagar, Gujarat</span>
+              <span className="text-text-muted/40 text-xs">Srinagar, Kashmir</span>
                             <span className="w-px h-3 bg-border" />
                             <span className="text-text-muted/40 text-xs">10000+ Happy Customers</span>
                             <span className="w-px h-3 bg-border" />

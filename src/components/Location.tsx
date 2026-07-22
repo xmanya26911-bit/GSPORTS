@@ -63,10 +63,10 @@ export default function Location() {
                   <p className="text-text-muted text-sm leading-relaxed">
                     1/2, Keshavam Crest, FF, behind Pratham Square,<br />
                     opp. Swaminar Mandir, Anant Vihar Society,<br />
-                    Himatnagar, Gujarat 383001
+                    Khanda, Srinagar, Jammu & Kashmir 190006
                   </p>
                   <a
-                    href="https://maps.google.com/?q=Golden+Willowe+Sports+Himatnagar"
+                    href="https://maps.google.com/?q=Golden+Willowe+Sports+Srinagar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light transition-colors"
@@ -101,8 +101,8 @@ export default function Location() {
                 </div>
                 <div>
                   <h4 className="font-bold text-text text-sm mb-1">Phone</h4>
-                  <a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light transition-colors">
-                    788934 2459
+                  <a href="tel:917889342459" className="text-accent text-sm font-medium hover:text-accent-light transition-colors">
+                    7889342459
                   </a>
                 </div>
               </div>

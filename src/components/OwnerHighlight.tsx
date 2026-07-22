@@ -68,7 +68,7 @@ export default function OwnerHighlight() {
             Mr. Imran Ali
           </h2>
           <p className="text-text-muted text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
-            &ldquo;Crafting dreams, one bat at a time. Every piece of willow that leaves our workshop carries the passion of Himatnagar&apos;s finest craftsmen.&rdquo;
+            &ldquo;Crafting dreams, one bat at a time. Every piece of willow that leaves our workshop carries the passion of Srinagar&apos;s finest craftsmen.&rdquo;
           </p>
           <div className="text-text-muted text-sm mb-12">
                       Crafting Excellence Since 2010

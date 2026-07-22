@@ -12,9 +12,9 @@ const values = [
 ];
 
 const timeline = [
-  { year: "2010", event: "Golden Willowe founded in Himatnagar" },
+  { year: "2010", event: "Golden Willowe founded in Srinagar" },
   { year: "2013", event: "Expanded to English willow bats" },
-  { year: "2016", event: "Became Sabarkantha's premier bat maker" },
+  { year: "2016", event: "Became India's premier bat maker" },
   { year: "2020", event: "10000+ happy customers served" },
   { year: "2026", event: "15+ years of crafting excellence" },
 ];
@@ -33,7 +33,7 @@ export default function AboutPage() {
               About Golden Willowe
             </h1>
             <p className="text-text-muted text-sm md:text-base max-w-xl mt-4 leading-relaxed">
-              Himatnagar's premier cricket bat manufacturer — handcrafting excellence since 2010.
+              India's premier cricket bat manufacturer — handcrafting excellence since 2010.
             </p>
           </motion.div>
         </div>
@@ -50,7 +50,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-text-muted text-sm leading-relaxed">
                 <p>Founded by <strong className="text-text">Mr. Imran Ali</strong> with a simple mission: create the finest cricket bats that every player deserves — from school children to professionals.</p>
-                <p>What started as a small workshop in Himatnagar has grown into one of Gujarat's most trusted bat-making brands. 15+ years, 10,000+ happy customers, and every bat still handcrafted with the same care as the first.</p>
+                <p>What started as a small workshop in Srinagar has grown into one of India's most trusted bat-making brands. 15+ years, 10,000+ happy customers, and every bat still handcrafted with the same care as the first.</p>
                 <p>We source premium English and Kashmir willow directly from the groves, season it to perfection, and shape each bat with expert hands. No shortcuts, no compromises — just pure cricketing excellence.</p>
               </div>
             </motion.div>

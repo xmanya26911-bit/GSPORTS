@@ -36,12 +36,12 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-6">
               <div className="glass-card rounded-2xl p-8">
                 <div className="flex items-start gap-4"><div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20"><MapPin className="w-5 h-5 text-accent" /></div>
-                  <div><h4 className="font-bold text-text text-sm mb-1">Address</h4><p className="text-text-muted text-sm leading-relaxed">1/2, Keshavam Crest, FF, behind Pratham Square, opp. Swaminar Mandir, Anant Vihar Society, Himatnagar, Gujarat 383001</p>
-                    <a href="https://maps.google.com/?q=Golden+Willowe+Sports+Himatnagar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light">Get Directions →</a></div></div>
+                  <div><h4 className="font-bold text-text text-sm mb-1">Address</h4><p className="text-text-muted text-sm leading-relaxed">Khanda, Srinagar, Jammu & Kashmir 190006</p>
+                    <a href="https://maps.google.com/?q=Golden+Willowe+Sports+Srinagar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-accent text-xs font-medium mt-2 hover:text-accent-light">Get Directions →</a></div></div>
               </div>
               <div className="glass-card rounded-2xl p-8">
                 <div className="flex items-start gap-4"><div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20"><Phone className="w-5 h-5 text-accent" /></div>
-                  <div><h4 className="font-bold text-text text-sm mb-1">Phone</h4><a href="tel:07405208523" className="text-accent text-sm font-medium hover:text-accent-light">788934 2459</a>
+                  <div><h4 className="font-bold text-text text-sm mb-1">Phone</h4><a href="tel:917889342459" className="text-accent text-sm font-medium hover:text-accent-light">7889342459</a>
                     <p className="text-text-muted text-xs mt-1">Call or WhatsApp</p></div></div>
               </div>
               <div className="glass-card rounded-2xl p-8">

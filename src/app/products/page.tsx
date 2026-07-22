@@ -7,11 +7,10 @@ import { Search, Package } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const categoryImages: Record<string, string> = {
-  Cricket: "cricket.jpg", Football: "football.jpg", Badminton: "badminton.jpg",
-  Activewear: "activewear.jpg", Shoes: "shoes.jpg", Accessories: "accessories.jpg",
+  Cricket: "cricket.jpg",
 };
 
-const categories = ["All", "Cricket", "Football", "Badminton", "Activewear", "Shoes", "Accessories"];
+const categories = ["All", "Cricket"];
 
 interface Product {
   id: string;
@@ -54,7 +53,7 @@ export default function ProductsPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="section-label justify-center mb-5" />
             <h1 className="text-4xl md:text-6xl font-black text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>Our Collection</h1>
-            <p className="text-text-muted text-sm max-w-xl mx-auto">Premium sports gear for every athlete.</p>
+            <p className="text-text-muted text-sm max-w-xl mx-auto">Premium cricket bats handcrafted in Kashmir.</p>
           </motion.div>
         </div>
       </section>
@@ -135,7 +134,7 @@ export default function ProductsPage() {
           <p className="text-text-muted text-sm mb-6">We stock much more than listed. Visit our store or call us!</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className="bg-accent text-bg-dark px-6 py-3 rounded-xl text-sm font-semibold hover:bg-accent-light transition-all">Visit Store →</Link>
-            <a href="tel:07405208523" className="glass px-6 py-3 rounded-xl text-sm font-medium text-text-muted hover:text-accent transition-all">Call 074052 08523</a>
+            <a href="tel:917889342459" className="glass px-6 py-3 rounded-xl text-sm font-medium text-text-muted hover:text-accent transition-all">Call 7889342459</a>
           </div>
         </motion.div>
       </div>

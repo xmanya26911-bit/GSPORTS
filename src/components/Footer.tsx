@@ -18,7 +18,7 @@ export default function Footer() {
               <span className="block text-[10px] text-text-muted tracking-[0.3em] uppercase mt-[-2px]">Est. 2010</span>
             </Link>
             <p className="text-text-muted text-sm leading-relaxed mt-5 max-w-sm">
-              Himatnagar&apos;s premier cricket bat manufacturer. Handcrafted premium English &amp; Kashmir willow bats since 2010.
+              Kashmir&apos;s premier cricket bat manufacturer. Handcrafted premium English &amp; Kashmir willow bats since 2010.
             </p>
           </div>
 
@@ -51,10 +51,10 @@ export default function Footer() {
               <p className="text-text-muted leading-relaxed">
                 1/2, Keshavam Crest,<br />
                 behind Pratham Square,<br />
-                Himatnagar, Gujarat 383001
+                Khanda, Srinagar, J&K 190006
               </p>
-              <a href="tel:07405208523" className="block text-accent hover:text-accent-light transition-colors">
-                788934 2459
+              <a href="tel:917889342459" className="block text-accent hover:text-accent-light transition-colors">
+                7889342459
               </a>
               <div className="flex items-center gap-2 text-text-muted text-xs">
                 <span className="text-accent">Mon – Sat</span> 9:00 AM – 7:00 PM

@@ -130,7 +130,7 @@ export async function POST(request: Request) {
       checks: checks.map((c) => ({ ...c, passed: true })),
       product: productData,
       url: blob.url,
-      message: `✅ ${sanitizedName} is now live on G SPORTS!`,
+      message: `✅ ${sanitizedName} is now live on Golden Willowe!`,
       storeUrl: `https://gsports-beta.vercel.app/products`,
     }, { headers: corsHeaders() });
 

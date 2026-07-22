@@ -25,15 +25,15 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Golden Willowe Sports — Premium Cricket Bats | Kashmir & English Willow",
   description:
-    "Himatnagar's premier cricket bat manufacturer | Premium English & Kashmir willow bats. Handcrafted by Imran Ali. 15+ years of excellence.",
+    "Kashmir's premier cricket bat manufacturer | Premium English & Kashmir willow bats. Handcrafted by Imran Ali. 15+ years of excellence.",
   keywords: [
-    "cricket bats Himatnagar", "English willow bats", "Kashmir willow bats",
-    "sports equipment Gujarat", "Golden Willowe Sports", "Imran Ali", "Sabarkantha cricket",
+    "cricket bats Kashmir", "English willow bats", "Kashmir willow bats",
+    "Golden Willowe Sports", "Imran Ali", "Kashmir cricket bats",
     "activewear", "sports shoes",
   ],
   openGraph: {
     title: "Golden Willowe Sports — Premium Cricket Bats",
-    description: "Himatnagar's premier cricket bat maker since 2010. Handcrafted English & Kashmir willow bats, factory-direct prices.",
+    description: "Kashmir's premier cricket bat maker since 2010. Handcrafted English & Kashmir willow bats, factory-direct prices.",
     url: "https://goldenwillowe.vercel.app",
     siteName: "Golden Willowe Sports",
     type: "website",
