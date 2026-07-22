@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   keywords: [
     "cricket bats Kashmir", "English willow bats", "Kashmir willow bats",
     "Golden Willowe Sports", "Imran Ali", "Kashmir cricket bats",
-    "activewear", "sports shoes",
+    "cricket equipment", "cricket gear",
   ],
   openGraph: {
     title: "Golden Willowe Sports — Premium Cricket Bats",

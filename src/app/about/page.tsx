@@ -24,7 +24,7 @@ export default function AboutPage() {
     <div className="pt-28">
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        <div className="absolute inset-0"><img src="/images/hero-bg.jpg" alt="" className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-bg-dark/90 via-bg-dark/80 to-bg-dark/60" /></div>
+        <div className="absolute inset-0"><img src="/images/hero-cricket-bg.jpg" alt="" className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-bg-dark/90 via-bg-dark/80 to-bg-dark/60" /></div>
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
         <div className="relative z-10 h-full flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
