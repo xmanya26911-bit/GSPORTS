@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Golden Willowe Sports — Premium Cricket Bats",
     description: "Himatnagar's premier cricket bat maker since 2010. Handcrafted English & Kashmir willow bats, factory-direct prices.",
-    url: "https://gsports-beta.vercel.app",
+    url: "https://goldenwillowe.vercel.app",
     siteName: "Golden Willowe Sports",
     type: "website",
   },
