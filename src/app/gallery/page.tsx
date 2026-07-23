@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const items = [
-  { img: "cat-bats.jpg", label: "Premium Bats", desc: "English & Kashmir willow" },
+  { img: "powerpro.png", label: "Premium Bats", desc: "English & Kashmir willow" },
   { img: "cat-gloves.jpg", label: "Batting Gloves", desc: "Pro-grade protection" },
   { img: "cat-kitbags.jpg", label: "Kitbags", desc: "Durable cricket gear bags" },
   { img: "cat-pads.jpg", label: "Pads & Guards", desc: "Complete protection" },
   { img: "cat-keeping.jpg", label: "Wicket-keeping", desc: "Gloves & protective gear" },
   { img: "cat-helmets.jpg", label: "Helmets", desc: "Safety first" },
   { img: "cricket.jpg", label: "Cricket Balls", desc: "Match quality" },
-  { img: "cat-bats.jpg", label: "Cricket Accessories", desc: "Everything you need" },
+  { img: "naturalseries.png", label: "Cricket Accessories", desc: "Everything you need" },
 ];
 
 export default function GalleryPage() {

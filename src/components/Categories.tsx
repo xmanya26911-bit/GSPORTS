@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const cats = [
-  { title: "Premium Bats", img: "cat-bats.jpg", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "20+" },
+  { title: "Premium Bats", img: "powerpro.png", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "20+" },
   { title: "Batting Gloves", img: "cat-gloves.jpg", desc: "Professional-grade gloves for all levels.", count: "15+" },
   { title: "Kitbags", img: "cat-kitbags.jpg", desc: "Durable kitbags for your cricket gear.", count: "10+" },
   { title: "Keeping Gloves", img: "cat-keeping.jpg", desc: "Wicket-keeping gloves, pro series.", count: "12+" },
