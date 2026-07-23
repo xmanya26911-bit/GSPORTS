@@ -40,7 +40,7 @@ function AnimatedCounter({ end, suffix = "", label = "" }: { end: number; suffix
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-4xl md:text-5xl font-black text-gold-gradient" style={{ fontFamily: "var(--font-playfair)" }}>
+      <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gold-gradient" style={{ fontFamily: "var(--font-playfair)" }}>
         {count}{suffix}
       </div>
       {label && <div className="text-text-muted text-xs mt-2 uppercase tracking-wider">{label}</div>}
@@ -50,7 +50,7 @@ function AnimatedCounter({ end, suffix = "", label = "" }: { end: number; suffix
 
 export default function OwnerHighlight() {
   return (
-    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent/3 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[120px]" />
 
@@ -81,15 +81,15 @@ export default function OwnerHighlight() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 gap-6 max-w-2xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto"
         >
-          <div className="glass-card rounded-2xl p-8 py-10">
+          <div className="glass-premium rounded-2xl p-6 sm:p-8 sm:py-10">
             <AnimatedCounter end={15} suffix="+" label="Years of Experience" />
           </div>
-          <div className="glass-card rounded-2xl p-8 py-10">
+          <div className="glass-premium rounded-2xl p-6 sm:p-8 sm:py-10">
             <AnimatedCounter end={10} suffix="k+" label="Happy Customers" />
           </div>
-          <div className="glass-card rounded-2xl p-8 py-10">
+          <div className="glass-premium rounded-2xl p-6 sm:p-8 sm:py-10">
             <AnimatedCounter end={100} suffix="%" label="Quality Assured" />
           </div>
         </motion.div>

@@ -40,7 +40,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-28 px-4 sm:px-6 lg:px-8 bg-premium-section">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-premium-section">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -55,7 +55,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="glass rounded-2xl p-8 mb-6">
+              <div className="glass-premium rounded-2xl p-8 mb-6">
                 <h3 className="font-bold text-text text-lg mb-6" style={{ fontFamily: "var(--font-playfair)" }}>Our Journey</h3>
                 <div className="space-y-5">
                   {timeline.map((item, i) => (
@@ -76,7 +76,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-28 px-4 sm:px-6 lg:px-8 bg-premium-dark">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-premium-dark">
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <div className="section-label justify-center mb-5" />
@@ -85,7 +85,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {values.map((val, i) => (
               <motion.div key={val.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="glass-card rounded-2xl p-6 md:p-7 flex items-start gap-4">
+                className="glass-premium rounded-2xl p-6 md:p-7 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20"><val.icon className="w-5 h-5 text-accent" /></div>
                 <div><h3 className="font-bold text-text text-sm mb-1">{val.title}</h3><p className="text-text-muted text-xs leading-relaxed">{val.desc}</p></div>
               </motion.div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
       </section>
 
       {/* Owner */}
-      <section className="py-28 px-4 sm:px-6 lg:px-8 text-center bg-premium-section">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 text-center bg-premium-section">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20"><Award className="w-6 h-6 text-accent" /></div>

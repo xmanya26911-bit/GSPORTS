@@ -104,7 +104,7 @@ export default function ProductsPage() {
                 : `/images/${categoryImages[product.category] || "cricket.jpg"}`;
               return (
               <motion.div key={product.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}
-                className="glass-card rounded-xl overflow-hidden group">
+                className="glass-premium rounded-xl overflow-hidden group">
                 <Link href={`/products/${product.slug}`} className="block">
                   <div className="h-60 overflow-hidden">
                     <img src={productImage} alt={product.name}

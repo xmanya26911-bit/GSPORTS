@@ -45,7 +45,7 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
         onMouseMove={handleMouse}
         onMouseLeave={handleLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="glass-card rounded-2xl overflow-hidden group cursor-pointer"
+        className="glass-premium rounded-2xl overflow-hidden group cursor-pointer"
       >
         {/* Image */}
         <div className="relative h-64 overflow-hidden" style={{ transform: "translateZ(20px)" }}>
@@ -86,7 +86,7 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
 
 export default function Categories() {
   return (
-    <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
       {/* Section BG Accent */}
       <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-accent/[0.02] to-transparent pointer-events-none" />
 

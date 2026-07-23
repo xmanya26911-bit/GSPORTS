@@ -55,6 +55,7 @@
 }
 
 @layer utilities {
+  /* Gold Gradient Text */
   .text-gold-gradient {
     background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 40%, #D4AF37 80%);
     -webkit-background-clip: text;
@@ -62,6 +63,7 @@
     background-clip: text;
   }
   
+  /* Premium Card Glow */
   .glass {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
@@ -79,9 +81,34 @@
   
   .glass-card:hover {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border-color: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.25);
     transform: translateY(-2px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.1), 0 0 40px rgba(212, 175, 55, 0.05);
+  }
+
+  /* Premium Border Accent */
+  .glass-premium {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.03) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-premium:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(212, 175, 55, 0.15);
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
   }
   
   .section-padding {
@@ -93,6 +120,13 @@
   }
   
   .section-label::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.5);
+  }
+
+  .section-label::after {
     content: "";
     width: 2rem;
     height: 1px;
@@ -132,6 +166,16 @@
   0% { transform: scale(1.1) translateX(0%); }
   50% { transform: scale(1.15) translateX(-2%); }
   100% { transform: scale(1.1) translateX(0%); }
+}
+
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes counter-in {

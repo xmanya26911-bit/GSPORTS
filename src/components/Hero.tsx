@@ -5,16 +5,14 @@ import { motion } from "framer-motion";
 import { ChevronDown, Star, Phone } from "lucide-react";
 import Link from "next/link";
 
-const headline = ["Crafting", "Excellence", "in Every Bat"];
-
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-premium-dark">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-premium-dark noise-overlay">
       {/* Ken Burns Background */}
       <div className="absolute inset-0">
         <img src="/images/hero-cricket-bg.jpg" alt="Cricket stadium at golden hour" className="w-full h-full object-cover animate-ken-burns opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-dark/90 via-bg-dark/60 to-bg-dark/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg-dark/95 via-bg-dark/70 to-bg-dark/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
       </div>
 
       {/* Ambient Orbs */}
@@ -47,28 +45,35 @@ export default function Hero() {
 
             {/* Split Text Headline */}
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text leading-[1.0] tracking-[-0.01em] mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-              {headline.map((word, i) => (
-                <span key={word} className="reveal-text" style={i > 0 ? { marginLeft: "0.35em" } : undefined}>
-                  <motion.span
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className={i === 1 ? "text-gold-gradient" : ""}
-                  >
-                    {word}
-                  </motion.span>
-                </span>
-              ))}
+              <span className="reveal-text block">
+                <motion.span
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Crafting{" "}
+                  <span className="text-gold-gradient">Excellence</span>
+                </motion.span>
+              </span>
+              <span className="reveal-text block">
+                <motion.span
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  in Every Bat
+                </motion.span>
+              </span>
               <span className="block mt-2">
                 <span className="reveal-text">
                   <motion.span
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.75, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 0.65, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="text-base md:text-lg font-sans font-normal text-text-muted tracking-normal"
                   >
                     in Srinagar, Kashmir
-                                      </motion.span>
+                  </motion.span>
                 </span>
               </span>
             </h1>
