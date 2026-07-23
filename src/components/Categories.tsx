@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const cats = [
-  { title: "Premium Bats", img: "powerpro.png", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "17" },
+  { title: "Premium Bats", img: "premiumbats-collection.png", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "17" },
 ];
 
 function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
