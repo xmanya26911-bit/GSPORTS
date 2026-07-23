@@ -87,7 +87,7 @@ export default function OwnerHighlight() {
             <AnimatedCounter end={15} suffix="+" label="Years of Experience" />
           </div>
           <div className="glass-card rounded-2xl p-8 py-10">
-            <AnimatedCounter end={10000} suffix="+" label="Happy Customers" />
+            <AnimatedCounter end={10} suffix="k+" label="Happy Customers" />
           </div>
           <div className="glass-card rounded-2xl p-8 py-10">
             <AnimatedCounter end={100} suffix="%" label="Quality Assured" />

@@ -106,7 +106,7 @@ export default function ProductsPage() {
               <motion.div key={product.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}
                 className="glass-card rounded-xl overflow-hidden group">
                 <Link href={`/products/${product.slug}`} className="block">
-                  <div className="h-40 overflow-hidden">
+                  <div className="h-60 overflow-hidden">
                     <img src={productImage} alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                   </div>

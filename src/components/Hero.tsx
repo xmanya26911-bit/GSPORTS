@@ -116,7 +116,7 @@ export default function Hero() {
             >
               <span className="text-text-muted/40 text-xs">Srinagar, Kashmir</span>
                             <span className="w-px h-3 bg-border" />
-                            <span className="text-text-muted/40 text-xs">10000+ Happy Customers</span>
+                            <span className="text-text-muted/40 text-xs">10k+ Happy Customers</span>
                             <span className="w-px h-3 bg-border" />
                             <span className="text-text-muted/40 text-xs">Family Owned Since 2010</span>
             </motion.div>

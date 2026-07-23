@@ -69,7 +69,7 @@ export default function AboutPage() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-2xl overflow-hidden border border-border"><img src="/images/ceo-imran-ali.png" alt="Mr. Imran Ali — Founder & CEO Golden Willowe Sports" className="w-full h-56 object-cover object-top" /></div>
+              <div className="rounded-2xl overflow-hidden border border-border"><img src="/images/ceo-imran-ali.png" alt="Mr. Imran Ali — Founder & CEO Golden Willowe Sports" className="w-full h-72 object-cover object-center" /></div>
             </motion.div>
           </div>
         </div>

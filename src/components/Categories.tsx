@@ -48,7 +48,7 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
         className="glass-card rounded-2xl overflow-hidden group cursor-pointer"
       >
         {/* Image */}
-        <div className="relative h-52 overflow-hidden" style={{ transform: "translateZ(20px)" }}>
+        <div className="relative h-64 overflow-hidden" style={{ transform: "translateZ(20px)" }}>
           <img
             src={`/images/${cat.img}`}
             alt={cat.title}
