@@ -60,8 +60,9 @@ export default function OwnerHighlight() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 border border-accent/20">
-            <Heart className="w-6 h-6 text-accent" />
+          <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-6 border-2 border-accent/30 shadow-lg shadow-accent/10">
+            <img src="/images/ceo-imran-ali.png" alt="Mr. Imran Ali — CEO Golden Willowe Sports"
+              className="w-full h-full object-cover" />
           </div>
           <span className="text-accent text-xs font-medium uppercase tracking-[0.3em]">Message from Our CEO</span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text mt-4 mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
