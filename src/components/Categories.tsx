@@ -7,12 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 const cats = [
-  { title: "Premium Bats", img: "powerpro.png", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "20+" },
-  { title: "Batting Gloves", img: "cat-gloves.jpg", desc: "Professional-grade gloves for all levels.", count: "15+" },
-  { title: "Kitbags", img: "cat-kitbags.jpg", desc: "Durable kitbags for your cricket gear.", count: "10+" },
-  { title: "Keeping Gloves", img: "cat-keeping.jpg", desc: "Wicket-keeping gloves, pro series.", count: "12+" },
-  { title: "Pads &amp; Guards", img: "cat-pads.jpg", desc: "Leg guards, thighpads &amp; arm guards.", count: "20+" },
-  { title: "Helmets", img: "cat-helmets.jpg", desc: "Premium protective helmets, all sizes.", count: "10+" },
+  { title: "Premium Bats", img: "powerpro.png", desc: "English &amp; Kashmir willow bats, handcrafted with precision.", count: "17" },
 ];
 
 function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
@@ -77,7 +72,7 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
           </h3>
           <p className="text-text-muted text-sm leading-relaxed mb-5">{cat.desc}</p>
           <Link
-            href={`/products#${cat.title.toLowerCase()}`}
+            href={`/products`}
             className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-text-muted group-hover:text-accent transition-colors duration-300"
           >
             Browse Collection
@@ -117,8 +112,8 @@ export default function Categories() {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Single Card - Centered */}
+        <div className="max-w-md mx-auto">
           {cats.map((cat, i) => (
             <TiltCard key={cat.title} cat={cat} i={i} />
           ))}
