@@ -45,23 +45,25 @@ export default function Hero() {
 
             {/* Split Text Headline */}
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text leading-[1.0] tracking-[-0.01em] mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+              {/* Crafting alone on line 1 */}
               <span className="reveal-text block">
                 <motion.span
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  Crafting{" "}
-                  <span className="text-gold-gradient">Excellence</span>
+                  Crafting
                 </motion.span>
               </span>
+              {/* Excellence in Every Bat on line 2 */}
               <span className="reveal-text block">
                 <motion.span
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.45, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  in Every Bat
+                  <span className="text-gold-gradient">Excellence</span>
+                  {" "}in Every Bat
                 </motion.span>
               </span>
               <span className="block mt-2">
