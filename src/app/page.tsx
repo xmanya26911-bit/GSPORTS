@@ -1,21 +1,21 @@
-"use client";
+import { HeroSection } from "@/components/home/HeroSection";
+import { FeaturesSection } from "@/components/home/FeaturesSection";
+import { StatsSection } from "@/components/home/StatsSection";
+import { ProductSlider } from "@/components/home/ProductSlider";
+import { OwnerSection } from "@/components/home/OwnerSection";
+import { ReelsSection } from "@/components/home/ReelsSection"
+import { GallerySection } from "@/components/home/GallerySection";
 
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Categories from "@/components/Categories";
-import OwnerHighlight from "@/components/OwnerHighlight";
-import Testimonials from "@/components/Testimonials";
-import Location from "@/components/Location";
-
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Marquee />
-      <Categories />
-      <OwnerHighlight />
-      <Testimonials />
-      <Location />
+      <HeroSection />
+      <FeaturesSection />
+      <StatsSection />
+      <ProductSlider title="Premium Cricket Bats" />
+      <OwnerSection />
+      <GallerySection />
+      <ReelsSection />
     </>
   );
 }

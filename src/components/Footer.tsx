@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-premium-dark border-t border-border overflow-hidden">
+    <footer className="relative bg-bg-alt border-t border-border-light overflow-hidden">
       {/* Decorative top line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted/50">
+        <div className="mt-12 pt-8 border-t border-border-light flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted/50">
           <p>© {new Date().getFullYear()} Golden Willowe Sports. All rights reserved.</p>
           <p>Crafting dreams, one bat at a time.</p>
         </div>

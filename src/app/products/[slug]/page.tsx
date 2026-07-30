@@ -1,4 +1,5 @@
 "use client";
+import type { Product } from "@/types";
 
 import { use, useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -6,21 +7,6 @@ import { ShoppingCart, Minus, Plus, Star, Truck, Shield, RotateCcw, Check, Chevr
 import Link from "next/link";
 import { useCart } from "@/store/cart";
 
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  category: string;
-  description: string;
-  images: string[];
-  price: string;
-  slug: string;
-  createdAt: string;
-  features?: string[];
-  specifications?: { label: string; value: string }[];
-  highlights?: string[];
-  faqs?: { question: string; answer: string }[];
-}
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -121,7 +107,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   if (!product) return null;
 
   const imageList = product.images?.length > 0 ? product.images : ["/images/cricket.jpg"];
-  const hasPrice = product.price && product.price !== "Visit store for pricing";
+  const hasPrice = product.price && typeof product.price === "number";
   const features = (product.features && product.features.length > 0) ? product.features : [
     "Handcrafted from premium grade willow",
     "Professional grade with optimal balance",
@@ -222,7 +208,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
               </span>
               {hasPrice && (
                 <span className="text-sm text-text-muted line-through">
-                  ₹{Math.round(parseInt(product.price.replace(/[^0-9]/g, "")) * 1.15).toLocaleString("en-IN")}
+                  ₹{product.price || 0}
                 </span>
               )}
             </div>

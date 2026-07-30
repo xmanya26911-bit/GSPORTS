@@ -50,7 +50,7 @@ function AnimatedCounter({ end, suffix = "", label = "" }: { end: number; suffix
 
 export default function OwnerHighlight() {
   return (
-    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-section">
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent/3 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[120px]" />
 

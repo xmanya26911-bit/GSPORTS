@@ -1,168 +1,107 @@
-
 "use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Search, Package, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useCart } from "@/store/cart";
+import { motion } from "framer-motion";
+import { Search, SlidersHorizontal, X } from "lucide-react";
+import Link from "next/link";
+import type { Product } from "@/types";
 
-const categoryImages: Record<string, string> = {
-  Cricket: "cricket.jpg",
-};
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const isOnSale = product.compareAtPrice && product.compareAtPrice > product.price;
+  const slug = product.slug;
 
-const categories = ["All", "Cricket"];
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  category: string;
-  description: string;
-  price: string;
-  images: string[];
-  slug: string;
-  createdAt: string;
+  return (
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}>
+      <Link href={`/products/${slug}`} className="group block glass-card overflow-hidden">
+        <div className="relative aspect-[4/5] overflow-hidden bg-bg-dark">
+          {product.images?.[0] && <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />}
+          {isOnSale && <span className="sale-badge">Sale</span>}
+        </div>
+        <div className="p-4">
+          <p className="text-xs text-text-muted uppercase tracking-wider mb-1">{product.brand}</p>
+          <h3 className="font-medium text-sm text-text leading-tight mb-2 line-clamp-2">{product.name}</h3>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-primary">₹{product.price?.toLocaleString("en-IN")}</span>
+            {isOnSale && <span className="text-text-muted text-sm line-through">₹{product.compareAtPrice?.toLocaleString("en-IN")}</span>}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
 }
 
 export default function ProductsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const addItem = useCart((s) => s.addItem);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("featured");
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     fetch("/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products || []))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
+      .then((r) => r.json())
+      .then((data) => { setProducts(data.products || []); setLoading(false); })
+      .catch(() => setLoading(false));
   }, []);
 
-  const filtered = products.filter(
-    (p) =>
-      (activeCategory === "All" || p.category === activeCategory) &&
-      (searchQuery === "" || p.name.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  let filtered = products;
+  if (search) {
+    const q = search.toLowerCase();
+    filtered = filtered.filter((p) => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q));
+  }
+
+  filtered = [...filtered].sort((a, b) => {
+    switch (sort) {
+      case "price-asc": return a.price - b.price;
+      case "price-desc": return b.price - a.price;
+      case "name-asc": return a.name.localeCompare(b.name);
+      default: return 0;
+    }
+  });
 
   return (
-    <div className="pt-28">
-      {/* Header */}
-      <section className="relative py-20 overflow-hidden bg-premium-dark">
-        <div className="absolute inset-0"><img src="/images/hero-cricket-bg.jpg" alt="" className="w-full h-full object-cover opacity-20" /><div className="absolute inset-0 bg-gradient-to-r from-bg-dark via-bg-dark/90 to-bg-dark" /></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="section-label justify-center mb-5" />
-            <h1 className="text-4xl md:text-6xl font-black text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>Our Collection</h1>
-            <p className="text-text-muted text-sm max-w-xl mx-auto">Premium cricket bats handcrafted in Kashmir.</p>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        {/* Search & Filters */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-2xl p-5 mb-10">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-              <input type="text" placeholder="Search products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent pl-11 pr-4 py-3 rounded-xl border border-border focus:border-accent/30 focus:ring-1 focus:ring-accent/20 outline-none transition-all text-sm text-text placeholder-text-muted/30" />
-            </div>
-            <div className="flex flex-wrap gap-2 shrink-0">
-              {categories.map((cat) => (
-                <button key={cat} onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-xs font-medium tracking-wide transition-all ${activeCategory === cat ? "bg-accent text-bg-dark" : "glass text-text-muted hover:text-text"}`}>
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Loading */}
-        {loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="glass-card rounded-xl overflow-hidden">
-                <div className="h-40 skeleton" />
-                <div className="p-4 space-y-2">
-                  <div className="h-4 skeleton w-3/4" />
-                  <div className="h-3 skeleton w-1/2" />
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Products Grid */}
-        {!loading && filtered.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {filtered.map((product, index) => {
-              const productImage = product.images?.[0]
-                ? product.images[0]
-                : `/images/${categoryImages[product.category] || "cricket.jpg"}`;
-              return (
-              <motion.div key={product.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.02 }}
-                className="glass-premium rounded-xl overflow-hidden group">
-                <Link href={`/products/${product.slug}`} className="block">
-                  <div className="h-60 overflow-hidden">
-                    <img src={productImage} alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-text text-sm mb-1">{product.name}</h3>
-                    <p className="text-text-muted text-xs mb-1">{product.brand}</p>
-                    <p className="text-text-muted/50 text-[11px] line-clamp-2 mb-3">{product.description}</p>
-                    <div className="flex items-center gap-2 pt-2 border-t border-border">
-                      <span className="text-accent font-semibold text-sm flex-1">{product.price}</span>
-                    </div>
-                  </div>
-                </Link>
-                <div className="px-4 pb-4">
-                  <button
-                    onClick={() =>
-                      addItem({
-                        id: product.id,
-                        slug: product.slug,
-                        name: product.name,
-                        image: productImage,
-                        price: product.price,
-                      })
-                    }
-                    className="w-full py-2 rounded-lg bg-accent/10 text-accent hover:bg-accent hover:text-bg-dark transition-all duration-300 text-xs font-semibold flex items-center justify-center gap-2"
-                    aria-label={`Add ${product.name} to cart`}
-                  >
-                    <ShoppingCart size={14} /> Add to Cart
-                  </button>
-                </div>
-              </motion.div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Empty state */}
-        {!loading && filtered.length === 0 && (
-          <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-2xl bg-bg-hover flex items-center justify-center mx-auto mb-4">
-              <Package className="w-8 h-8 text-text-muted/30" />
-            </div>
-            <p className="text-sm text-text-muted/50 mb-1">No products yet</p>
-            <p className="text-xs text-text-muted/30">Products will appear here once added through the admin panel</p>
-          </div>
-        )}
-
-        {/* CTA */}
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center mt-12 glass rounded-2xl p-8 md:p-12">
-          <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: "var(--font-playfair)" }}>Didn&apos;t Find What You&apos;re Looking For?</h3>
-          <p className="text-text-muted text-sm mb-6">We stock much more than listed. Visit our store or call us!</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact" className="bg-accent text-bg-dark px-6 py-3 rounded-xl text-sm font-semibold hover:bg-accent-light transition-all">Visit Store →</Link>
-            <a href="tel:917889342459" className="glass px-6 py-3 rounded-xl text-sm font-medium text-text-muted hover:text-accent transition-all">Call 7889342459</a>
-          </div>
-        </motion.div>
+    <div className="container-main py-10">
+      <div className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-black text-primary font-display mb-2">Our Collection</h1>
+        <p className="text-text-muted">Handcrafted premium cricket bats</p>
       </div>
+
+      {/* Search + Sort */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="relative flex-1">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search bats..." className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" />
+          {search && <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text"><X className="w-4 h-4" /></button>}
+        </div>
+        <div className="flex items-center gap-2">
+          <select value={sort} onChange={(e) => setSort(e.target.value)} className="px-3 py-2.5 rounded-xl border border-border bg-white text-sm text-text focus-ring">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Grid */}
+      {loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="glass-card overflow-hidden animate-pulse">
+              <div className="aspect-[4/5] bg-bg-dark" />
+              <div className="p-4 space-y-3"><div className="h-3 bg-bg-dark rounded w-1/3" /><div className="h-4 bg-bg-dark rounded w-3/4" /><div className="h-5 bg-bg-dark rounded w-1/2" /></div>
+            </div>
+          ))}
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-text-muted text-lg mb-2">No products found</p>
+          <p className="text-text-muted text-sm">Try adjusting your search.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {filtered.map((product, i) => (<ProductCard key={product.id} product={product} index={i} />))}
+        </div>
+      )}
     </div>
   );
 }

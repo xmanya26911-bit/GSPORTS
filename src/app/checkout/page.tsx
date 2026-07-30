@@ -6,36 +6,36 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   Check,
-  Copy,
-  Smartphone,
   MessageCircle,
   ShoppingBag,
+  Smartphone,
+  Shield,
 } from "lucide-react";
 import { useCart } from "@/store/cart";
+import DynamicUPICheckout from "@/components/DynamicUPICheckout";
+import { MERCHANT } from "@/lib/upi";
 
-const UPI_ID = "7889342459@paytm";
-const WHATSAPP_NUMBER = "917889342459";
+const WHATSAPP_NUMBER = MERCHANT.whatsapp;
 
 export default function CheckoutPage() {
   const { items, totalPrice, totalItems, clearCart } = useCart();
-  const [orderId] = useState(() => `GW${Date.now().toString().slice(-8)}`);
-  const [copied, setCopied] = useState(false);
+  const [orderId, setOrderId] = useState("");
   const [step, setStep] = useState<"checkout" | "success">("checkout");
 
-  const copyUpiId = () => {
-    navigator.clipboard.writeText(UPI_ID);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleOrderPlaced = () => {
+  const handlePaid = () => {
+    if (!orderId) return;
     const itemsList = items
       .map((i) => `• ${i.name} × ${i.quantity} = ${i.price}`)
       .join("%0A");
-    const text = `Hello Golden Willowe!%0A%0AI've placed an order.%0AOrder ID: ${orderId}%0A%0AItems:%0A${itemsList}%0A%0ATotal: ₹${totalPrice()}%0A%0AI've paid via UPI to ${UPI_ID}. Please confirm my order.`;
+    const text = `Hello Golden Willowe!%0A%0AI've placed an order.%0AOrder ID: ${orderId}%0A%0AItems:%0A${itemsList}%0A%0ATotal: ₹${totalPrice()}%0A%0AI've paid via UPI to ${MERCHANT.upiId}. Please confirm my order.`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
     setStep("success");
     clearCart();
+  };
+
+  // When DynamicUPICheckout generates the orderId, we capture it
+  const handleOrderGenerated = (id: string) => {
+    setOrderId(id);
   };
 
   if (items.length === 0 && step === "checkout") {
@@ -107,7 +107,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="pt-28 pb-20">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Back */}
         <Link
           href="/products"
@@ -121,122 +121,128 @@ export default function CheckoutPage() {
           Checkout
         </h1>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Order summary */}
-          <div>
-            <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
-              Order Summary
-            </h2>
-            <div className="space-y-4">
-              {items.map((item) => (
-                <div
-                  key={item.slug}
-                  className="flex gap-4 p-4 bg-premium-dark rounded-2xl border border-accent/10"
-                >
-                  <div className="relative w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-bg-hover">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Left Column — Order Summary + Shipping */}
+          <div className="lg:col-span-3 space-y-8">
+            {/* Order Summary */}
+            <div>
+              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+                Order Summary
+              </h2>
+              <div className="space-y-3">
+                {items.map((item) => (
+                  <div
+                    key={item.slug}
+                    className="flex gap-4 p-4 bg-premium-dark rounded-2xl border border-accent/10"
+                  >
+                    <div className="relative w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-bg-hover">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-text">{item.name}</h3>
+                      <p className="text-xs text-text-muted mt-0.5">× {item.quantity}</p>
+                      <p className="font-mono text-sm text-accent mt-1">
+                        ₹{item.price * item.quantity}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-text">{item.name}</h3>
-                    <p className="text-xs text-text-muted mt-0.5">× {item.quantity}</p>
-                    <p className="font-mono text-sm text-accent mt-1">
-                      ₹{parseInt(item.price.replace(/[^0-9]/g, "")) * item.quantity}
-                    </p>
+                ))}
+              </div>
+
+              <div className="mt-4 p-6 bg-premium-dark rounded-3xl border border-accent/10">
+                <div className="flex justify-between mb-2">
+                  <span className="text-sm text-text-muted">Subtotal ({totalItems()} items)</span>
+                  <span className="font-mono text-text">₹{totalPrice()}</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-sm text-text-muted">Shipping</span>
+                  <span className="text-sm text-accent">Calculated after confirmation</span>
+                </div>
+                <div className="h-px bg-accent/20 my-4" />
+                <div className="flex justify-between items-center">
+                  <span className="text-sm tracking-wider uppercase text-text">Total</span>
+                  <span className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-playfair)" }}>
+                    ₹{totalPrice()}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Shipping Address */}
+            <div>
+              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+                Shipping Address
+              </h2>
+              <div className="p-6 bg-premium-dark rounded-3xl border border-accent/10">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="sm:col-span-2">
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">Full Name</label>
+                    <input type="text" placeholder="Enter your full name" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">Address</label>
+                    <input type="text" placeholder="House/Flat No., Street, Area" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">City</label>
+                    <input type="text" placeholder="City" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">State</label>
+                    <input type="text" placeholder="State" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs tracking-wider uppercase text-text-muted mb-2">Pincode</label>
+                    <input type="text" placeholder="Pincode" className="w-full px-4 py-3 bg-bg-hover border border-accent/10 rounded-xl text-text text-sm focus:outline-none focus:border-accent transition-colors" />
+                  </div>
+                  <div className="flex items-end">
+                    <div className="flex items-center gap-2 px-4 py-3 bg-premium-dark rounded-xl border border-accent/10 w-full">
+                      <input type="checkbox" id="saveAddress" defaultChecked className="rounded border-accent/30 text-accent focus:ring-accent" />
+                      <label htmlFor="saveAddress" className="text-xs text-text-muted">Save for future</label>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-6 p-6 bg-premium-dark rounded-3xl border border-accent/10">
-              <div className="flex justify-between mb-2">
-                <span className="text-sm text-text-muted">Subtotal ({totalItems()} items)</span>
-                <span className="font-mono text-text">₹{totalPrice()}</span>
               </div>
-              <div className="flex justify-between mb-2">
-                <span className="text-sm text-text-muted">Shipping</span>
-                <span className="text-sm text-accent">Calculated after confirmation</span>
-              </div>
-              <div className="h-px bg-accent/20 my-4" />
-              <div className="flex justify-between items-center">
-                <span className="text-sm tracking-wider uppercase text-text">Total</span>
-                <span className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-playfair)" }}>
-                  ₹{totalPrice()}
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-4 p-4 bg-premium-dark rounded-2xl border border-accent/10">
-              <p className="text-xs tracking-[0.2em] uppercase text-accent mb-1">Order ID</p>
-              <p className="font-mono text-lg text-text">{orderId}</p>
             </div>
           </div>
 
-          {/* Payment */}
-          <div>
+          {/* Right Column — Payment */}
+          <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
               Payment
             </h2>
 
-            <div className="p-8 bg-premium-dark rounded-3xl border border-accent/10">
-              <p className="text-xs tracking-[0.3em] uppercase text-accent mb-4">
-                Step 1 — Scan & Pay
-              </p>
-              <p className="text-sm text-text-muted mb-6">
-                Scan the QR code below with any UPI app (GPay, PhonePe, Paytm) and pay{" "}
-                <span className="font-bold text-text">₹{totalPrice()}</span>.
-              </p>
+            <DynamicUPICheckout
+              amount={totalPrice()}
+              showDetails={true}
+              onOrderGenerated={handleOrderGenerated}
+            />
 
-              {/* QR */}
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-white rounded-2xl shadow-sm">
-                  <img
-                    src="/images/payment-qr.jpg"
-                    alt="UPI QR Code"
-                    className="w-56 h-56 object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* UPI ID */}
-              <div className="flex items-center justify-between p-4 bg-bg-hover rounded-2xl mb-6">
-                <div>
-                  <p className="text-xs tracking-wider uppercase text-text-muted">UPI ID</p>
-                  <p className="font-mono text-text">{UPI_ID}</p>
-                </div>
-                <button
-                  onClick={copyUpiId}
-                  className="p-3 rounded-full bg-accent text-bg-dark hover:bg-accent-light transition-colors"
-                  aria-label="Copy UPI ID"
-                >
-                  {copied ? <Check size={18} /> : <Copy size={18} />}
-                </button>
-              </div>
-
-              <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">
-                Step 2 — Confirm Order
-              </p>
-              <p className="text-sm text-text-muted mb-6">
-                After payment, click below to send your order details and UTR to us on WhatsApp. We'll confirm within a few hours.
-              </p>
-
-              <button
-                onClick={handleOrderPlaced}
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent text-bg-dark text-sm font-bold tracking-wider uppercase hover:bg-accent-light transition-all rounded-xl"
-              >
-                <MessageCircle size={18} />
-                I've Paid — Confirm on WhatsApp
-              </button>
-            </div>
+            {/* Confirm Button */}
+            <motion.button
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handlePaid}
+              disabled={!orderId}
+              className="w-full mt-4 inline-flex items-center justify-center gap-3 px-6 py-4 bg-accent text-bg-dark text-sm font-bold tracking-wider uppercase hover:bg-accent-light transition-all rounded-xl disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <MessageCircle size={18} />
+              I've Paid — Confirm on WhatsApp
+            </motion.button>
 
             {/* Trust */}
-            <div className="mt-6 flex items-center gap-3 p-4 bg-premium-dark rounded-2xl border border-accent/10">
-              <Smartphone size={20} className="text-accent flex-shrink-0" />
+            <div className="mt-4 flex items-center gap-3 p-4 bg-premium-dark rounded-2xl border border-accent/10">
+              <Shield size={18} className="text-accent flex-shrink-0" />
               <p className="text-xs text-text-muted">
-                Secure UPI payment · No card required · Instant confirmation via WhatsApp
+                Secure UPI payment · Instant confirmation via WhatsApp
               </p>
             </div>
           </div>

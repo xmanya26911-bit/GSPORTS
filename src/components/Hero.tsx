@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,17 +6,17 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-premium-dark noise-overlay">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-premium-section noise-overlay">
       {/* Ken Burns Background */}
       <div className="absolute inset-0">
-        <img src="/images/hero-cricket-bg.jpg" alt="Cricket stadium at golden hour" className="w-full h-full object-cover animate-ken-burns opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-dark/95 via-bg-dark/70 to-bg-dark/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
+        <img src="/images/hero-cricket-bg.jpg" alt="Cricket stadium at golden hour" className="w-full h-full object-cover animate-ken-burns opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
       </div>
 
       {/* Ambient Orbs */}
-      <div className="absolute top-1/3 right-1/3 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[150px] animate-pulse-glow" />
-      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/3 right-1/3 w-[500px] h-[500px] bg-accent/4 rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent/2 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
 
       {/* Decorative lines */}
       <div className="absolute top-40 left-[12%] w-px h-40 bg-gradient-to-b from-accent/20 to-transparent hidden lg:block" />
@@ -100,7 +99,7 @@ export default function Hero() {
             >
               <Link
                 href="/products"
-                className="group relative inline-flex items-center gap-2 bg-accent text-bg-dark px-8 py-4 rounded-xl text-sm font-bold tracking-wide overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-accent/20 interactive"
+                className="group relative inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-xl text-sm font-bold tracking-wide overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-accent/20 interactive"
               >
                 <span className="relative z-10">Explore Collection</span>
                 <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">→</span>
@@ -142,7 +141,7 @@ export default function Hero() {
         <ChevronDown className="w-4 h-4 text-accent/40 animate-scroll" />
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg via-bg/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
     </section>
   );
 }

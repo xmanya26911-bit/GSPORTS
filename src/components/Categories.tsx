@@ -54,7 +54,7 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
             alt={cat.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
           <div className="absolute top-4 left-4">
             <span className="text-[11px] text-accent font-medium bg-bg-dark/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-accent/20">
               {cat.count} items
@@ -70,10 +70,10 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
           >
             {cat.title}
           </h3>
-          <p className="text-text-muted text-sm leading-relaxed mb-5">{cat.desc}</p>
+          <p className="text-text-body text-sm leading-relaxed mb-5">{cat.desc}</p>
           <Link
             href={`/products`}
-            className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-text-muted group-hover:text-accent transition-colors duration-300"
+            className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-text-body group-hover:text-accent transition-colors duration-300"
           >
             Browse Collection
             <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -86,9 +86,9 @@ function TiltCard({ cat, i }: { cat: typeof cats[0]; i: number }) {
 
 export default function Categories() {
   return (
-    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-premium-dark">
+    <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-bg-alt">
       {/* Section BG Accent */}
-      <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-accent/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-accent/[0.04] to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -107,7 +107,7 @@ export default function Categories() {
             <br />
             <span className="text-gold-gradient">Your Cricket</span>
           </h2>
-          <p className="text-text-muted max-w-xl text-sm leading-relaxed">
+          <p className="text-text-body max-w-xl text-sm leading-relaxed">
             Handcrafted cricket equipment — from premium bats to protective gear. Every product carries our quality promise.
           </p>
         </motion.div>

@@ -80,29 +80,29 @@ export async function POST(request: Request) {
     const slug = sanitizedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const productId = `prod_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     
-    // Upload any base64 images to Blob
+    // Store images (relative paths, http URLs, or base64)
     const imageUrls: string[] = [];
     if (images && Array.isArray(images)) {
       for (const img of images) {
-        if (typeof img === "string" && img.startsWith("data:")) {
-          try {
-            const match = img.match(/^data:(image\/\w+);base64,(.+)$/);
-            if (match) {
-              const mimeType = match[1];
-              const ext = mimeType.split("/")[1];
-              const buffer = Buffer.from(match[2], "base64");
-              const blob = await put(
-                `products/${productId}_${Date.now()}.${ext}`,
-                buffer,
-                { contentType: mimeType, access: "public" }
-              );
-              imageUrls.push(blob.url);
-            }
-          } catch {
-            // Skip failed image uploads
+        if (typeof img === "string") {
+          if (img.startsWith("data:")) {
+            try {
+              const match = img.match(/^data:(image\/\w+);base64,(.+)$/);
+              if (match) {
+                const mimeType = match[1];
+                const ext = mimeType.split("/")[1];
+                const buffer = Buffer.from(match[2], "base64");
+                const blob = await put(
+                  `products/${productId}_${Date.now()}.${ext}`,
+                  buffer,
+                  { contentType: mimeType, access: "public" }
+                );
+                imageUrls.push(blob.url);
+              }
+            } catch { /* skip */ }
+          } else {
+            imageUrls.push(img);
           }
-        } else if (typeof img === "string" && img.startsWith("http")) {
-          imageUrls.push(img);
         }
       }
     }

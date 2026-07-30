@@ -1,67 +1,34 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ScrollProgress from "@/components/ScrollProgress";
-import CustomCursor from "@/components/CustomCursor";
-import NoiseOverlay from "@/components/NoiseOverlay";
-import LoadingScreen from "@/components/LoadingScreen";
-import Spotlight from "@/components/Spotlight";
-import CartDrawer from "@/components/CartDrawer";
-import ShowOnPublic from "@/components/ShowOnPublic";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-playfair",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Golden Willowe Sports — Premium Cricket Bats | Kashmir & English Willow",
-  description:
-    "Kashmir's premier cricket bat manufacturer | Premium English & Kashmir willow bats. Handcrafted by Imran Ali. 15+ years of excellence.",
-  keywords: [
-    "cricket bats Kashmir", "English willow bats", "Kashmir willow bats",
-    "Golden Willowe Sports", "Imran Ali", "Kashmir cricket bats",
-    "cricket equipment", "cricket gear",
-  ],
+  title: { default: "Golden Willowe Sports — Premium Cricket Bats", template: "%s – Golden Willowe Sports" },
+  description: "India\u2019s premier cricket bat manufacturer. Handcrafted premium English & Kashmir willow bats since 2010. Factory-direct pricing from Srinagar.",
   openGraph: {
+    type: "website", locale: "en_IN", siteName: "Golden Willowe Sports",
     title: "Golden Willowe Sports — Premium Cricket Bats",
-    description: "Kashmir's premier cricket bat maker since 2010. Handcrafted English & Kashmir willow bats, factory-direct prices.",
-    url: "https://goldenwillowe.vercel.app",
-    siteName: "Golden Willowe Sports",
-    type: "website",
+    description: "Handcrafted premium English & Kashmir willow bats from Srinagar.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: "#0A0A0A",
+  robots: { index: true, follow: true },
+  metadataBase: new URL("https://goldenwillowe.vercel.app"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-bg text-text font-sans antialiased">
-        <LoadingScreen />
-        <Spotlight />
-        <NoiseOverlay />
-        <CustomCursor />
-        <ScrollProgress />
-        <ShowOnPublic><Navbar /></ShowOnPublic>
-        <main className="min-h-screen">{children}</main>
-        <ShowOnPublic><Footer /></ShowOnPublic>
-        <ShowOnPublic><WhatsAppButton /></ShowOnPublic>
-        <CartDrawer />
+      <body className="min-h-screen flex flex-col antialiased">
+        <AnnouncementBar />
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

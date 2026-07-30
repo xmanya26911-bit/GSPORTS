@@ -31,7 +31,7 @@ export default function Testimonials() {
 
   return (
     <section className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="absolute inset-0 bg-premium-section" />
+      <div className="absolute inset-0 bg-white/40" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/3 rounded-full blur-[120px]" />
 
       <div className="max-w-4xl mx-auto relative z-10">

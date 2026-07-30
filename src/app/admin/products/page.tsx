@@ -5,17 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Package, Sparkles, Trash2, ExternalLink, RefreshCw, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  category: string;
-  description: string;
-  price: string;
-  images: string[];
-  slug: string;
-  createdAt: string;
-}
+import type { Product } from "@/types";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);

@@ -8,7 +8,7 @@ export type CartItem = {
   slug: string;
   name: string;
   image: string;
-  price: string;
+  price: number;
   quantity: number;
 };
 
@@ -62,8 +62,7 @@ export const useCart = create<CartStore>()(
       totalItems: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
       totalPrice: () =>
         get().items.reduce((sum, i) => {
-          const price = parseInt(i.price.replace(/[^0-9]/g, ""));
-          return sum + (isNaN(price) ? 0 : price * i.quantity);
+          return sum + ((i.price || 0) * i.quantity);
         }, 0),
     }),
     {
