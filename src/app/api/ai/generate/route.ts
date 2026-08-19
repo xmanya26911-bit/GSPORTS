@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminRequest } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -7,6 +8,10 @@ const AI_BASE_URL = "https://opencode.ai/zen/v1";
 const AI_MODEL = "mimo-v2.5-free";
 
 export async function POST(request: Request) {
+  if (!isAdminRequest(request.headers)) {
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
+
   let reqBody: { productName?: string; brand?: string; price?: string } = {};
   try {
     reqBody = await request.json();
