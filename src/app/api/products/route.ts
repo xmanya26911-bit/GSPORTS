@@ -1,20 +1,21 @@
-import { list } from "@vercel/blob";
 import { NextResponse } from "next/server";
+import { getCachedProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const { blobs } = await list({ prefix: "products/" });
-    const products = await Promise.all(
-      blobs.map(async (blob) => {
-        const res = await fetch(blob.url);
-        return res.json();
-      })
+    const products = await getCachedProducts();
+    return NextResponse.json(
+      { products, total: products.length },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        },
+      }
     );
-    return NextResponse.json({ products, total: products.length });
   } catch (error) {
     console.error("Failed to fetch products:", error);
-    return NextResponse.json({ products: [], total: 0 });
+    return NextResponse.json({ products: [], total: 0 }, { status: 500 });
   }
 }
