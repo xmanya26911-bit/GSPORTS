@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 export default function OrdersPage() {
   const [search, setSearch] = useState("");
 
-  const statusVariant = (status: string) => {
+  const statusVariant = (status: string): "success" | "warning" | "danger" | "neutral" => {
     switch (status) {
       case "delivered": return "success";
       case "processing": case "shipped": return "warning";
@@ -64,7 +64,7 @@ export default function OrdersPage() {
                     <td className="px-4 py-3"><div className="text-sm font-medium text-text">{order.customer}</div><div className="text-[11px] text-text-tertiary">{order.email}</div></td>
                     <td className="px-4 py-3 text-xs text-text-secondary">{order.items}</td>
                     <td className="px-4 py-3 text-xs font-semibold text-text">{formatCurrency(order.total)}</td>
-                    <td className="px-4 py-3"><Badge variant={statusVariant(order.status) as any}>{order.status}</Badge></td>
+                    <td className="px-4 py-3"><Badge variant={statusVariant(order.status)}>{order.status}</Badge></td>
                     <td className="px-4 py-3"><span className={`text-xs font-medium ${order.payment === "paid" ? "text-success" : order.payment === "refunded" ? "text-danger" : "text-warning"}`}>{order.payment}</span></td>
                     <td className="px-4 py-3 text-xs text-text-tertiary">{formatRelative(order.date)}</td>
                     <td className="px-4 py-3"><button className="w-8 h-8 rounded-lg flex items-center justify-center text-text-tertiary hover:bg-bg-hover transition-colors"><MoreHorizontal className="w-4 h-4" /></button></td>

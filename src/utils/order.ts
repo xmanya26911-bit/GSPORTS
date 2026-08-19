@@ -11,7 +11,3 @@ export function formatCurrency(amount: number): string {
     maximumFractionDigits: 0,
   }).format(amount);
 }
-
-export function getPaymentStatus(orderId: string): "pending" | "confirmed" {
-  return "pending";
-}

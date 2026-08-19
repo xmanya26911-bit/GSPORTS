@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SITE_NAME, QUICK_LINKS, INSTAGRAM_HANDLE, INSTAGRAM_URL, WHATSAPP_URL, WHATSAPP_NUMBER, EMAIL, ADDRESS, OWNER_NAME } from "@/lib/constants";
-import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+import { MessageCircle, Mail, MapPin } from "lucide-react";
 
 export function Footer() {
   return (

@@ -18,8 +18,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
-
   return (
     <header className={cn("sticky top-0 z-50 transition-all duration-300", scrolled ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-border" : "bg-white")}>
       <div className="container-main">
@@ -65,11 +63,11 @@ export function Header() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden border-t border-border bg-white overflow-hidden">
             <nav className="container-main py-4 space-y-1" aria-label="Mobile navigation">
               {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={cn("block px-4 py-3 rounded-lg text-sm font-medium transition-colors focus-ring", pathname === link.href ? "text-accent bg-accent/5" : "text-text-muted hover:text-text hover:bg-bg-dark")}>
+                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={cn("block px-4 py-3 rounded-lg text-sm font-medium transition-colors focus-ring", pathname === link.href ? "text-accent bg-accent/5" : "text-text-muted hover:text-text hover:bg-bg-dark")}>
                   {link.label}
                 </Link>
               ))}
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 rounded-lg text-sm font-medium text-accent hover:bg-accent/5 transition-colors">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium text-accent hover:bg-accent/5 transition-colors">
                 Order on WhatsApp
               </a>
             </nav>

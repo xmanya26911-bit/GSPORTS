@@ -3,11 +3,12 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Sparkles, Send, Image as ImageIcon, X, Loader2, Wand2,
+  Sparkles, X, Loader2, Wand2,
   CheckCircle, ArrowLeft, Upload, Trash2, ExternalLink, AlertCircle,
   ListChecks, Settings2, Star, HelpCircle
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface AIProductContent {
   description: string;
@@ -324,7 +325,7 @@ export default function AIProductGenerator() {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {images.map((img, i) => (
                   <div key={i} className="relative group aspect-square rounded-xl overflow-hidden bg-bg-hover border border-border">
-                    <img src={img.url} alt={`Product ${i + 1}`} className="w-full h-full object-cover" />
+                    <Image src={img.url} alt={`Product ${i + 1}`} fill unoptimized sizes="200px" className="object-cover" />
                     <button
                       onClick={() => removeImage(i)}
                       className="absolute top-1.5 right-1.5 w-7 h-7 rounded-lg bg-black/60 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity"

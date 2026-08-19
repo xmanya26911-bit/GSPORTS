@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Bell, Maximize2, LogOut, User, Settings, ChevronDown, LayoutDashboard, Package, ShoppingCart, Sparkles, Users } from "lucide-react";
+import { Bell, Maximize2, LogOut, Settings, ChevronDown, LayoutDashboard, Package, ShoppingCart, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 
 const pageTitles: Record<string, { label: string; icon: typeof LayoutDashboard }> = {

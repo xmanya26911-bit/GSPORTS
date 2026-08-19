@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Package, Sparkles, Trash2, ExternalLink, RefreshCw, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 import type { Product } from "@/types";
+import { ProductImage } from "@/components/ProductImage";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -14,7 +15,7 @@ export default function ProductsPage() {
   const [deleting, setDeleting] = useState<string | null>(null);
   const [error, setError] = useState("");
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/products");
@@ -25,9 +26,14 @@ export default function ProductsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  useEffect(() => { fetchProducts(); }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchProducts();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [fetchProducts]);
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete "${name}"? This will remove it from the live store.`)) return;
@@ -128,9 +134,9 @@ export default function ProductsPage() {
                 className="flex items-center gap-4 px-4 py-3.5 hover:bg-bg-hover/50 transition-colors group"
               >
                 {/* Thumb */}
-                <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-bg-hover">
+                <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 bg-bg-hover relative">
                   {product.images?.[0] ? (
-                    <img src={product.images[0]} alt="" className="w-full h-full object-cover" />
+                    <ProductImage src={product.images[0]} alt="" sizes="40px" className="object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-xs font-bold text-accent">
                       {product.name.charAt(0)}

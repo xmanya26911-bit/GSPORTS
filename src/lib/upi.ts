@@ -41,11 +41,3 @@ export function openUPIApp(uri: string): void {
 export function copyToClipboard(text: string): Promise<void> {
   return navigator.clipboard.writeText(text);
 }
-
-export function getAppDeepLinks(uri: string) {
-  return {
-    googlePay: uri,
-    phonePe: `phonepe://pay?${uri.split("?")[1] || uri}`,
-    paytm: `paytmmp://pay?${uri.split("?")[1] || uri}`,
-  };
-}

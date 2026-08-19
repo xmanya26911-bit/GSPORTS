@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Golden Willowe Sports — E-commerce Store
+
+Handcrafted premium English & Kashmir willow cricket bats, built with **Next.js (App Router)** on **Vercel**.
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, React 19)
+- **Styling:** Tailwind CSS v4 (CSS-first config in `src/app/globals.css`)
+- **Animations:** framer-motion
+- **State:** zustand (cart)
+- **Data:** Vercel Blob storage + client-side Instagram fetch
+- **Validation:** zod
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local`:
 
-## Learn More
+```bash
+# Required for admin product creation/management
+ADMIN_PASSWORD=your-strong-password
 
-To learn more about Next.js, take a look at the following resources:
+# Used by /api/products/create to store generated images
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Reels / Instagram (no token required — reads public og:image metadata)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> **Security:** without `ADMIN_PASSWORD` the admin area, product create/update/delete
+> endpoints, and the AI product generator are locked out (fail-closed). Never use the
+> default/example value in production.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                    # App Router pages & API routes
+│   ├── api/
+│   │   ├── auth/           # Session login/logout (httpOnly cookie)
+│   │   ├── products/       # Cached catalog + admin CRUD (auth + zod)
+│   │   ├── ai/generate/    # AI product generator (admin only)
+│   │   └── instagram/      # Cached reels metadata
+│   ├── admin/              # Admin dashboard (server-side auth guard)
+│   ├── products/           # Catalog + product detail (server-rendered)
+│   └── ...
+├── components/             # UI components (layout, home, product, admin)
+├── lib/                    # Data + auth layer (cached product fetches, HMAC sessions)
+├── store/                  # zustand cart
+├── types/                  # Shared TypeScript types
+└── utils/                  # Order ID / currency helpers
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Key Notes
+
+- **Product images:** the catalog stores local `/images/*.png` paths; the repo ships
+  optimized `.webp` equivalents and `next.config.ts` redirects `.png` requests to
+  `.webp`. `resolveProductImage()` (`src/lib/products.ts`) maps this at render time.
+- **Caching:** product catalog is cached server-side for 5 minutes and revalidated on
+  product changes; reels metadata is cached for 6 hours.
+- **Admin auth:** HMAC-signed, 7-day httpOnly cookie (`gw_admin_session`) verified on
+  every admin page and protected API route. Log in at `/login`.
+- **Re-running image optimization:** `node scripts/optimize-images.mjs` regenerates
+  WebP files from the original PNGs (backup them first; originals are deleted after).
+
+## Scripts
+
+```bash
+npm run dev      # development server
+npm run build    # production build
+npm run lint     # eslint
+npm run start    # start production build
+```
+
+## Deployment
+
+Push to GitHub → import into Vercel → set env vars → deploy.
+
+Live: https://goldenwillowe.vercel.app
