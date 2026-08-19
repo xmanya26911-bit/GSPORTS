@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Plus, Minus, Trash2, ShoppingBag, ArrowLeft, ChevronRight } from "lucide-react";
 import { useCart } from "@/store/cart";
+import { ProductImage } from "@/components/ProductImage";
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, totalPrice, totalItems } = useCart();
@@ -16,7 +16,7 @@ export default function CartPage() {
           <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
             <ShoppingBag size={32} className="text-accent" />
           </div>
-          <h1 className="text-3xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>
+          <h1 className="text-3xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Your cart is empty
           </h1>
           <p className="text-text-muted mb-8">Add some products before checking out</p>
@@ -44,7 +44,7 @@ export default function CartPage() {
         </Link>
 
         <div className="flex items-center justify-between mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-text" style={{ fontFamily: "var(--font-playfair)" }}>
+          <h1 className="text-4xl lg:text-5xl font-bold text-text" style={{ fontFamily: "var(--font-display)" }}>
             Shopping Cart
           </h1>
           <span className="text-sm text-text-muted">{totalItems()} {totalItems() === 1 ? "item" : "items"}</span>
@@ -62,11 +62,7 @@ export default function CartPage() {
                 className="flex gap-4 p-4 bg-premium-dark rounded-2xl border border-accent/10"
               >
                 <div className="relative w-20 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-bg-hover">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <ProductImage src={item.image} alt={item.name} sizes="80px" className="object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-text truncate">{item.name}</h3>
@@ -106,7 +102,7 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="p-6 bg-premium-dark rounded-3xl border border-accent/10 sticky top-28">
-              <h2 className="text-xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+              <h2 className="text-xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-display)" }}>
                 Order Summary
               </h2>
               <div className="space-y-3">
@@ -121,7 +117,7 @@ export default function CartPage() {
                 <div className="h-px bg-accent/20 my-3" />
                 <div className="flex justify-between font-bold">
                   <span className="text-text">Total</span>
-                  <span className="text-2xl text-text font-mono" style={{ fontFamily: "var(--font-playfair)" }}>
+                  <span className="text-2xl text-text font-mono" style={{ fontFamily: "var(--font-display)" }}>
                     ₹{totalPrice()}
                   </span>
                 </div>

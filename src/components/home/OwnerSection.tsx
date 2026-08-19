@@ -20,7 +20,7 @@ export function OwnerSection() {
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-border">
-              <img src="/images/ceo-imran-ali.png" alt={OWNER_NAME} className="w-full h-full object-cover object-center" />
+              <Image src="/images/ceo-imran-ali.webp" alt={OWNER_NAME} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover object-center" />
             </div>
             <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-accent/10 rounded-2xl border border-accent/20 flex items-center justify-center -z-10">
               <span className="text-accent font-black font-display text-2xl">GW</span>

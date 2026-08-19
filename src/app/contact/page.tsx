@@ -6,8 +6,17 @@ import { Button } from "@/components/ui/button";
 import { WHATSAPP_URL, WHATSAPP_NUMBER, EMAIL, ADDRESS } from "@/lib/constants";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = encodeURIComponent(
+      `Hello Golden Willowe!%0A%0AName: ${name}%0AEmail: ${email}%0A%0AMessage: ${message}`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className="container-main py-10">
@@ -20,16 +29,15 @@ export default function ContactPage() {
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
             <div className="bg-bg-alt rounded-2xl p-6 border border-border">
               <h2 className="text-lg font-bold text-primary font-display mb-6">Send a Message</h2>
-              {submitted ? (
-                <div className="text-center py-8"><Send className="w-12 h-12 text-accent mx-auto mb-4" /><p className="font-medium text-text">Message sent!</p><p className="text-sm text-text-muted mt-1">We&apos;ll get back to you shortly.</p></div>
-              ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div><label className="block text-sm font-medium text-text mb-1">Name</label><input className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label className="block text-sm font-medium text-text mb-1">Email</label><input type="email" required className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label className="block text-sm font-medium text-text mb-1">Message</label><textarea rows={4} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring resize-none" /></div>
-                  <Button type="submit" variant="primary" size="lg" className="w-full">Send</Button>
+                  <div><label htmlFor="contact-name" className="block text-sm font-medium text-text mb-1">Name</label><input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-email" className="block text-sm font-medium text-text mb-1">Email</label><input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-message" className="block text-sm font-medium text-text mb-1">Message</label><textarea id="contact-message" rows={4} required value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring resize-none" /></div>
+                  <Button type="submit" variant="primary" size="lg" className="w-full">
+                    <Send className="w-4 h-4" /> Send via WhatsApp
+                  </Button>
+                  <p className="text-xs text-text-muted text-center">Your message opens in WhatsApp so we can reply directly.</p>
                 </form>
-              )}
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">

@@ -23,9 +23,9 @@ export const NAV_LINKS = [
 ];
 
 export const CATEGORIES = [
-  { id: "premium-bats", title: "Premium Bats", slug: "/products", image: "/images/premiumbats-collection.png", productCount: 17, desc: "English & Kashmir willow bats, handcrafted with precision." },
-  { id: "english-willow", title: "English Willow", slug: "/products", image: "/images/powerpro.png", productCount: 10, desc: "Premium grade English willow for professional performance." },
-  { id: "kashmir-willow", title: "Kashmir Willow", slug: "/products", image: "/images/classicrange.png", productCount: 7, desc: "High-quality Kashmir willow for exceptional value." },
+  { id: "premium-bats", title: "Premium Bats", slug: "/products", image: "/images/premiumbats-collection.webp", productCount: 17, desc: "English & Kashmir willow bats, handcrafted with precision." },
+  { id: "english-willow", title: "English Willow", slug: "/products", image: "/images/powerpro.webp", productCount: 10, desc: "Premium grade English willow for professional performance." },
+  { id: "kashmir-willow", title: "Kashmir Willow", slug: "/products", image: "/images/classicrange.webp", productCount: 7, desc: "High-quality Kashmir willow for exceptional value." },
 ];
 
 export const QUICK_LINKS = [

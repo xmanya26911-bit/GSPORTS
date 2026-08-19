@@ -1,5 +1,3 @@
-import { type ClassValue, clsx } from "clsx";
-
 export function cn(...inputs: string[]) {
   return inputs.filter(Boolean).join(" ");
 }
@@ -10,6 +8,13 @@ export function formatCurrency(amount: number): string {
     currency: "INR",
     maximumFractionDigits: 0,
   }).format(amount);
+}
+
+/** Formats a product price that may be numeric or a "contact store" string. */
+export function formatProductPrice(price: number | string | undefined | null): string {
+  if (typeof price === "number" && !Number.isNaN(price)) return `₹${price.toLocaleString("en-IN")}`;
+  if (typeof price === "string") return price;
+  return "Visit store for pricing";
 }
 
 export function formatDate(date: Date): string {

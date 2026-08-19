@@ -20,7 +20,6 @@ import { generateOrderId, formatCurrency } from "@/utils/order";
 
 interface DynamicUPICheckoutProps {
   amount: number;
-  onPaid?: () => void;
   onCancel?: () => void;
   onOrderGenerated?: (orderId: string) => void;
   showDetails?: boolean;
@@ -29,7 +28,6 @@ interface DynamicUPICheckoutProps {
 
 export default function DynamicUPICheckout({
   amount,
-  onPaid,
   onOrderGenerated,
   showDetails = true,
   className = "",
@@ -46,18 +44,11 @@ export default function DynamicUPICheckout({
   const [copiedOrder, setCopiedOrder] = useState(false);
   const [expandDetails, setExpandDetails] = useState(true);
   const qrRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
 
   const upiUri = createUPIURI({ amount, orderId });
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
     let cancelled = false;
-    setQrLoading(true);
-    setQrError(false);
 
     QRCode.toDataURL(upiUri, {
       width: 400,
@@ -130,21 +121,18 @@ export default function DynamicUPICheckout({
     {
       id: "gpay" as const,
       label: "Google Pay",
-      icon: "/images/gpay-icon.png",
       color: "from-[#4285F4] to-[#34A853]",
       action: () => handleOpenApp("gpay"),
     },
     {
       id: "phonepe" as const,
       label: "PhonePe",
-      icon: "/images/phonepe-icon.png",
       color: "from-[#5F259F] to-[#7C3AED]",
       action: () => handleOpenApp("phonepe"),
     },
     {
       id: "paytm" as const,
       label: "Paytm",
-      icon: "/images/paytm-icon.png",
       color: "from-[#00BAF2] to-[#002970]",
       action: () => handleOpenApp("paytm"),
     },

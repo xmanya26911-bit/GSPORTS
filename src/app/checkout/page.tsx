@@ -8,11 +8,11 @@ import {
   Check,
   MessageCircle,
   ShoppingBag,
-  Smartphone,
   Shield,
 } from "lucide-react";
 import { useCart } from "@/store/cart";
 import DynamicUPICheckout from "@/components/DynamicUPICheckout";
+import { ProductImage } from "@/components/ProductImage";
 import { MERCHANT } from "@/lib/upi";
 
 const WHATSAPP_NUMBER = MERCHANT.whatsapp;
@@ -45,7 +45,7 @@ export default function CheckoutPage() {
           <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
             <ShoppingBag size={32} className="text-accent" />
           </div>
-          <h1 className="text-3xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>
+          <h1 className="text-3xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Your cart is empty
           </h1>
           <p className="text-text-muted mb-8">Add some products before checking out</p>
@@ -72,11 +72,11 @@ export default function CheckoutPage() {
           >
             <Check size={48} className="text-bg-dark" />
           </motion.div>
-          <h1 className="text-4xl lg:text-5xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-playfair)" }}>
+          <h1 className="text-4xl lg:text-5xl font-bold text-text mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Order Placed!
           </h1>
           <p className="text-text-muted text-lg mb-8">
-            We've opened WhatsApp for you to confirm your payment. Once we verify your UTR, your order will be processed.
+            We&apos;ve opened WhatsApp for you to confirm your payment. Once we verify your UTR, your order will be processed.
           </p>
           <div className="p-6 bg-premium-dark rounded-3xl border border-accent/10 mb-8">
             <p className="text-xs tracking-[0.3em] uppercase text-accent mb-1">Your Order ID</p>
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
           Continue Shopping
         </Link>
 
-        <h1 className="text-4xl lg:text-5xl font-bold text-text mb-12" style={{ fontFamily: "var(--font-playfair)" }}>
+        <h1 className="text-4xl lg:text-5xl font-bold text-text mb-12" style={{ fontFamily: "var(--font-display)" }}>
           Checkout
         </h1>
 
@@ -126,7 +126,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-3 space-y-8">
             {/* Order Summary */}
             <div>
-              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-display)" }}>
                 Order Summary
               </h2>
               <div className="space-y-3">
@@ -136,11 +136,7 @@ export default function CheckoutPage() {
                     className="flex gap-4 p-4 bg-premium-dark rounded-2xl border border-accent/10"
                   >
                     <div className="relative w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-bg-hover">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <ProductImage src={item.image} alt={item.name} sizes="64px" className="object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-text">{item.name}</h3>
@@ -165,7 +161,7 @@ export default function CheckoutPage() {
                 <div className="h-px bg-accent/20 my-4" />
                 <div className="flex justify-between items-center">
                   <span className="text-sm tracking-wider uppercase text-text">Total</span>
-                  <span className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-playfair)" }}>
+                  <span className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-display)" }}>
                     ₹{totalPrice()}
                   </span>
                 </div>
@@ -174,7 +170,7 @@ export default function CheckoutPage() {
 
             {/* Shipping Address */}
             <div>
-              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+              <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-display)" }}>
                 Shipping Address
               </h2>
               <div className="p-6 bg-premium-dark rounded-3xl border border-accent/10">
@@ -216,7 +212,7 @@ export default function CheckoutPage() {
 
           {/* Right Column — Payment */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-playfair)" }}>
+            <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: "var(--font-display)" }}>
               Payment
             </h2>
 
@@ -235,7 +231,7 @@ export default function CheckoutPage() {
               className="w-full mt-4 inline-flex items-center justify-center gap-3 px-6 py-4 bg-accent text-bg-dark text-sm font-bold tracking-wider uppercase hover:bg-accent-light transition-all rounded-xl disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <MessageCircle size={18} />
-              I've Paid — Confirm on WhatsApp
+              I&apos;ve Paid — Confirm on WhatsApp
             </motion.button>
 
             {/* Trust */}

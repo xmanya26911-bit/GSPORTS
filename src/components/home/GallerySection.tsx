@@ -1,13 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const gallery = [
-  { img: "/images/powerpro.png", title: "PowerPro" },
-  { img: "/images/signatureedition.png", title: "Signature Edition" },
-  { img: "/images/goldseries.png", title: "Gold Series" },
-  { img: "/images/premiumcollection.png", title: "Premium Collection" },
+  { img: "/images/powerpro.webp", title: "PowerPro" },
+  { img: "/images/signatureedition.webp", title: "Signature Edition" },
+  { img: "/images/goldseries.webp", title: "Gold Series" },
+  { img: "/images/premiumcollection.webp", title: "Premium Collection" },
 ];
 
 export function GallerySection() {
@@ -23,7 +24,14 @@ export function GallerySection() {
           {gallery.map((item, i) => (
             <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <Link href="/products" className="group block relative aspect-[3/4] rounded-2xl overflow-hidden bg-bg-dark">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
                   <h3 className="text-white font-bold font-display text-lg">{item.title}</h3>

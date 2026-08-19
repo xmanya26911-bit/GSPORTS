@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { ChevronDown, Star, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -11,10 +12,13 @@ export function HeroSection() {
     <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-primary">
       {/* Stadium Background */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/images/hero-stadium.jpg"
           alt="Cricket stadium at night"
-          className="w-full h-full object-cover opacity-60"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />

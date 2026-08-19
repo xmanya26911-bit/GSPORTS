@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { OWNER_NAME, WHATSAPP_URL, SITE_NAME } from "@/lib/constants";
@@ -60,8 +61,8 @@ export default function AboutPage() {
         {/* CEO Photo */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
           <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div className="rounded-2xl overflow-hidden border border-border">
-              <img src="/images/ceo-imran-ali.png" alt={OWNER_NAME} className="w-full h-[400px] object-cover object-center" />
+            <div className="rounded-2xl overflow-hidden border border-border relative h-[400px]">
+              <Image src="/images/ceo-imran-ali.webp" alt={OWNER_NAME} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover object-center" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-primary font-display mb-2">Meet the Craftsman</h2>
