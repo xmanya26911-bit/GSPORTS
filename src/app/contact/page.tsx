@@ -30,9 +30,9 @@ export default function ContactPage() {
             <div className="bg-bg-alt rounded-2xl p-6 border border-border">
               <h2 className="text-lg font-bold text-primary font-display mb-6">Send a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div><label htmlFor="contact-name" className="block text-sm font-medium text-text mb-1">Name</label><input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label htmlFor="contact-email" className="block text-sm font-medium text-text mb-1">Email</label><input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label htmlFor="contact-message" className="block text-sm font-medium text-text mb-1">Message</label><textarea id="contact-message" rows={4} required value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus-ring resize-none" /></div>
+                  <div><label htmlFor="contact-name" className="block text-sm font-medium text-text mb-1">Name</label><input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-email" className="block text-sm font-medium text-text mb-1">Email</label><input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-message" className="block text-sm font-medium text-text mb-1">Message</label><textarea id="contact-message" rows={4} required value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring resize-none" /></div>
                   <Button type="submit" variant="primary" size="lg" className="w-full">
                     <Send className="w-4 h-4" /> Send via WhatsApp
                   </Button>

@@ -71,16 +71,16 @@ export default function CartPage() {
                     <button
                       onClick={() => updateQuantity(item.slug, item.quantity - 1)}
                       disabled={item.quantity <= 1}
-                      className="p-1.5 rounded-lg bg-bg-hover text-text-muted hover:text-text disabled:opacity-40 transition-colors"
+                      className="p-2.5 rounded-lg bg-bg-hover text-text-muted hover:text-text disabled:opacity-40 transition-colors"
                     >
-                      <Minus size={14} />
+                      <Minus size={16} />
                     </button>
                     <span className="font-mono text-sm text-text w-6 text-center">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.slug, item.quantity + 1)}
-                      className="p-1.5 rounded-lg bg-bg-hover text-text-muted hover:text-text transition-colors"
+                      className="p-2.5 rounded-lg bg-bg-hover text-text-muted hover:text-text transition-colors"
                     >
-                      <Plus size={14} />
+                      <Plus size={16} />
                     </button>
                   </div>
                 </div>
@@ -90,9 +90,10 @@ export default function CartPage() {
                   </span>
                   <button
                     onClick={() => removeItem(item.slug)}
-                    className="p-1.5 rounded-lg text-red-400/60 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                    className="p-2.5 rounded-lg text-red-400/60 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                    aria-label={`Remove ${item.name} from cart`}
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={16} />
                   </button>
                 </div>
               </motion.div>

@@ -22,7 +22,7 @@ export function Header() {
     <header className={cn("sticky top-0 z-50 transition-all duration-300", scrolled ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-border" : "bg-white")}>
       <div className="container-main">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 -ml-2 text-text hover:text-accent transition-colors focus-ring rounded-sm" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen}>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-3 -ml-2 text-text hover:text-accent transition-colors focus-ring rounded-sm" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen}>
             {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
@@ -48,10 +48,10 @@ export function Header() {
             <a href={PHONE_URL} className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/5 text-accent text-sm font-medium hover:bg-accent/10 transition-colors focus-ring" aria-label="Call us">
               <Phone className="w-3.5 h-3.5" /> {PHONE}
             </a>
-            <Link href="/cart" className="p-2 text-text-muted hover:text-text transition-colors focus-ring rounded-sm relative" aria-label="Shopping cart">
+            <Link href="/cart" className="p-3 text-text-muted hover:text-text transition-colors focus-ring rounded-sm relative" aria-label="Shopping cart">
               <ShoppingBag className="w-5 h-5" />
             </Link>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex bg-accent text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-accent-dark transition-colors focus-ring">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="sm:inline-flex bg-accent text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-accent-dark transition-colors focus-ring">
               Visit Store
             </a>
           </div>

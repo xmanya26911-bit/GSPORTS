@@ -34,7 +34,7 @@ export function HeroSection() {
               <span className="text-white/60 text-xs tracking-wider">100% · Quality Assured</span>
             </motion.div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.0] tracking-[-0.02em] mb-6">
+            <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-[-0.02em] mb-6">
               {headlineWords.map((word, i) => (
                 <span key={word} className="block">
                   <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className={i === 1 ? "text-accent-gradient" : ""}>
@@ -53,22 +53,22 @@ export function HeroSection() {
               Premium English &amp; Kashmir willow bats, handcrafted with precision. Factory-direct pricing — no middlemen, just pure quality.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }} className="flex flex-col sm:flex-row items-center gap-4">
-              <Link href="/products">
-                <Button variant="primary" size="lg" className="bg-accent text-white hover:bg-accent-dark">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Link href="/products" className="w-full sm:w-auto">
+                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-accent text-white hover:bg-accent-dark">
                   Explore Collection
                 </Button>
               </Link>
-              <a href="tel:917889342459" className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-sm font-medium text-white/70 hover:text-white hover:border-white/40 transition-all">
+              <a href="tel:917889342459" className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/20 text-sm font-medium text-white/70 hover:text-white hover:border-white/40 transition-all">
                 <Phone className="w-4 h-4" /> 7889342459
               </a>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex items-center gap-6 mt-16">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-14">
               <span className="text-white/30 text-xs">Srinagar, Kashmir</span>
-              <span className="w-px h-3 bg-white/20" />
+              <span className="w-px h-3 bg-white/20 hidden sm:block" />
               <span className="text-white/30 text-xs">10k+ Happy Customers</span>
-              <span className="w-px h-3 bg-white/20" />
+              <span className="w-px h-3 bg-white/20 hidden sm:block" />
               <span className="text-white/30 text-xs">Family Owned Since 2010</span>
             </motion.div>
           </div>

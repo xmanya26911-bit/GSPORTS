@@ -197,8 +197,8 @@ export function ProductDetailClient({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* Right: Buy Box */}
-        <div className="lg:col-span-3">
+        {/* Right: Buy Box (desktop) */}
+        <div className="lg:col-span-3 hidden lg:block">
           <div className="lg:sticky lg:top-24">
             <div className="glass rounded-2xl border border-border p-6 space-y-5">
               <div>
@@ -305,6 +305,35 @@ export function ProductDetailClient({ product }: { product: Product }) {
               </a>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Sticky Buy Bar (mobile) */}
+      <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden safe-bottom border-t border-border bg-white/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
+        <div className="flex items-center gap-2.5 px-4 py-3">
+          <div className="flex-1 min-w-0 pr-1">
+            <p className="text-[10px] uppercase tracking-wider text-text-muted">Price</p>
+            <p className="text-lg font-bold text-accent truncate leading-tight">
+              {formatProductPrice(product.price)}
+            </p>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            disabled={isSoldOut}
+            className={`h-12 px-4 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed ${
+              added ? "bg-success text-white" : "bg-accent/10 text-accent border border-accent/20"
+            }`}
+          >
+            {added ? <Check className="w-4 h-4" /> : <ShoppingCart className="w-4 h-4" />}
+            {added ? "Added" : "Add to Cart"}
+          </button>
+          <button
+            onClick={handleBuyNow}
+            disabled={isSoldOut}
+            className="h-12 px-5 rounded-xl text-sm font-bold bg-accent text-bg-dark flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Buy Now
+          </button>
         </div>
       </div>
 
