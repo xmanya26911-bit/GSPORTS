@@ -19,7 +19,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="container-main py-10">
+    <div className="container-main pt-10 pb-24 lg:pb-10">
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-3xl md:text-4xl font-black text-primary font-display mb-2">Contact</h1>

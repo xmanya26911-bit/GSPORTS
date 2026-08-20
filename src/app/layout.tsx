@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { MobileNav } from "@/components/layout/MobileNav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display", display: "swap" });
@@ -45,6 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <div className="h-16 lg:hidden" aria-hidden="true" />
+        <MobileNav />
       </body>
     </html>
   );
