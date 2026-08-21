@@ -35,24 +35,24 @@
 }
 
 .dark {
-  --color-bg: #0B0B0D;
-  --color-surface: #141417;
-  --color-bg-alt: #121215;
-  --color-bg-dark: #1C1C20;
-  --color-bg-hover: #1C1C20;
-  --color-bg-card: #141417;
-  --color-border: #2A2A30;
-  --color-border-light: #1C1C20;
-  --color-text: #F4F4F5;
-  --color-text-muted: #A1A1AA;
-  --color-text-light: #71717A;
-  --color-text-secondary: #D4D4D8;
-  --color-text-tertiary: #71717A;
-  --color-premium-dark: #1A1814;
-  --color-danger: #F87171;
+  --color-bg: #000000;
+  --color-surface: #0A0A0A;
+  --color-bg-alt: #050505;
+  --color-bg-dark: #111111;
+  --color-bg-hover: #111111;
+  --color-bg-card: #0A0A0A;
+  --color-border: #1F1F1F;
+  --color-border-light: #0F0F0F;
+  --color-text: #FFFFFF;
+  --color-text-muted: #B3B3B3;
+  --color-text-light: #808080;
+  --color-text-secondary: #E0E0E0;
+  --color-text-tertiary: #808080;
+  --color-premium-dark: #000000;
+  --color-danger: #FF6B6B;
   --color-success: #4ADE80;
-  --color-error: #F87171;
-  --color-warning: #FBBF24;
+  --color-error: #FF6B6B;
+  --color-warning: #FFD93D;
 }
 
 @layer base {
