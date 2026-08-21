@@ -17,7 +17,7 @@ export function GallerySection() {
       <div className="container-main">
         <div className="text-center mb-10">
           <p className="section-label">Our Collection</p>
-          <h2 className="text-3xl md:text-4xl font-black text-primary font-display mt-3">Featured Bats</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-text font-display mt-3">Featured Bats</h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -30,7 +30,7 @@ export function MobileNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed bottom-0 inset-x-0 z-40 lg:hidden safe-bottom border-t border-border bg-white/95 backdrop-blur-xl"
+      className="fixed bottom-0 inset-x-0 z-40 lg:hidden safe-bottom border-t border-border bg-bg/95 backdrop-blur-xl"
     >
       <div className="grid grid-cols-4 h-16">
         {links.map((link) => {

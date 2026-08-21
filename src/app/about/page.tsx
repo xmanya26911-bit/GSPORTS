@@ -24,13 +24,13 @@ export default function AboutPage() {
     <div className="container-main pt-10 pb-24 lg:pb-10">
       <div className="max-w-3xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-3xl md:text-4xl font-black text-primary font-display mb-4">About {SITE_NAME}</h1>
+          <h1 className="text-3xl md:text-4xl font-black text-text font-display mb-4">About {SITE_NAME}</h1>
           <p className="text-text-muted text-lg mb-8">India&apos;s premier cricket bat manufacturer — handcrafting excellence since 2010.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-10 mb-12">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-            <h2 className="text-xl font-bold text-primary font-display mb-4">Our Story</h2>
+            <h2 className="text-xl font-bold text-text font-display mb-4">Our Story</h2>
             <div className="space-y-4 text-text-muted text-sm leading-relaxed">
               <p>{SITE_NAME} Sports was born in the heart of Srinagar, Kashmir — a region with a rich heritage of craftsmanship. Founded by {OWNER_NAME}, our mission has always been simple: create the finest cricket bats in the world.</p>
               <p>From humble beginnings in a small workshop, we have grown into a brand trusted by cricketers across India and beyond. Every bat is handcrafted using premium English and Kashmir willow, selected for its grain structure and performance potential.</p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               <Image src="/images/ceo-imran-ali.webp" alt={OWNER_NAME} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover object-center" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-primary font-display mb-2">Meet the Craftsman</h2>
+              <h2 className="text-2xl font-bold text-text font-display mb-2">Meet the Craftsman</h2>
               <p className="text-text-muted text-sm leading-relaxed mb-3">{OWNER_NAME} — 15+ years of bat-making mastery. Every bat from {SITE_NAME} carries his personal touch and commitment to perfection.</p>
               <p className="italic text-text-muted text-sm border-l-2 border-accent pl-3">&ldquo;Crafting dreams, one bat at a time.&rdquo;</p>
             </div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
 
         {/* Values */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2 className="text-2xl font-bold text-primary font-display text-center mb-6">Why Choose Us</h2>
+          <h2 className="text-2xl font-bold text-text font-display text-center mb-6">Why Choose Us</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {values.map((v) => (
               <div key={v.title} className="glass-card p-5">
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <div className="text-center mt-12 p-8 bg-bg-alt rounded-2xl border border-border">
-          <h2 className="text-2xl font-bold text-primary font-display mb-3">Your Next Match-Winner Awaits</h2>
+          <h2 className="text-2xl font-bold text-text font-display mb-3">Your Next Match-Winner Awaits</h2>
           <p className="text-text-muted text-sm mb-6">Handcrafted, tested, and truly premium.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/products"><Button variant="primary" size="lg">Shop Now</Button></Link>

@@ -22,17 +22,17 @@ export default function ContactPage() {
     <div className="container-main pt-10 pb-24 lg:pb-10">
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-3xl md:text-4xl font-black text-primary font-display mb-2">Contact</h1>
+          <h1 className="text-3xl md:text-4xl font-black text-text font-display mb-2">Contact</h1>
           <p className="text-text-muted mb-8">Get in touch with us. We&apos;d love to hear from you.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 gap-8">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
             <div className="bg-bg-alt rounded-2xl p-6 border border-border">
-              <h2 className="text-lg font-bold text-primary font-display mb-6">Send a Message</h2>
+              <h2 className="text-lg font-bold text-text font-display mb-6">Send a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div><label htmlFor="contact-name" className="block text-sm font-medium text-text mb-1">Name</label><input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label htmlFor="contact-email" className="block text-sm font-medium text-text mb-1">Email</label><input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring" /></div>
-                  <div><label htmlFor="contact-message" className="block text-sm font-medium text-text mb-1">Message</label><textarea id="contact-message" rows={4} required value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm focus-ring resize-none" /></div>
+                  <div><label htmlFor="contact-name" className="block text-sm font-medium text-text mb-1">Name</label><input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-bg text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-email" className="block text-sm font-medium text-text mb-1">Email</label><input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-bg text-sm focus-ring" /></div>
+                  <div><label htmlFor="contact-message" className="block text-sm font-medium text-text mb-1">Message</label><textarea id="contact-message" rows={4} required value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-border bg-bg text-sm focus-ring resize-none" /></div>
                   <Button type="submit" variant="primary" size="lg" className="w-full">
                     <Send className="w-4 h-4" /> Send via WhatsApp
                   </Button>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Bell, Maximize2, LogOut, Settings, ChevronDown, LayoutDashboard, Package, ShoppingCart, Sparkles, Users } from "lucide-react";
+import { Bell, Maximize2, LogOut, Settings, ChevronDown, LayoutDashboard, Package, ShoppingCart, Sparkles, Users, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 
 const pageTitles: Record<string, { label: string; icon: typeof LayoutDashboard }> = {
@@ -16,9 +16,23 @@ const pageTitles: Record<string, { label: string; icon: typeof LayoutDashboard }
 
 export default function TopNav() {
   const [profileOpen, setProfileOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const pathname = usePathname();
   const page = pageTitles[pathname] || { label: "Admin", icon: LayoutDashboard };
   const Icon = page.icon;
+
+  const toggleTheme = () => {
+    const root = document.documentElement;
+    if (root.classList.contains("dark")) {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setTheme("light");
+    } else {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    }
+  };
 
   return (
     <header className="sticky top-0 z-30 h-16 border-b border-border bg-bg/80 backdrop-blur-xl">
@@ -35,9 +49,18 @@ export default function TopNav() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Theme */}
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-text-secondary hover:bg-bg-hover transition-colors"
+            title="Toggle dark mode"
+          >
+            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+
           {/* Fullscreen */}
           <button
-            onClick={() => document.documentElement.requestFullscreen()}
+            onClick={() => { try { void document.documentElement.requestFullscreen(); } catch { /* ignore */ } }}
             className="w-9 h-9 rounded-xl flex items-center justify-center text-text-secondary hover:bg-bg-hover transition-colors"
             title="Fullscreen"
           >

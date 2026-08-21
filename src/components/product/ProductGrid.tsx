@@ -35,7 +35,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           <p className="text-xs text-text-muted uppercase tracking-wider mb-1">{product.brand}</p>
           <h3 className="font-medium text-sm text-text leading-tight mb-2 line-clamp-2">{product.name}</h3>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-primary">{formatProductPrice(product.price)}</span>
+            <span className="font-bold text-text">{formatProductPrice(product.price)}</span>
             {isOnSale && (
               <span className="text-text-muted text-sm line-through">
                 ₹{product.compareAtPrice?.toLocaleString("en-IN")}
@@ -91,7 +91,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search bats..."
-            className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-sm focus-ring"
+            className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-bg text-sm focus-ring"
           />
           {search && (
             <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text" aria-label="Clear search">
@@ -107,7 +107,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
             id="product-sort"
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="px-3 py-3 rounded-xl border border-border bg-white text-sm text-text focus-ring"
+            className="px-3 py-3 rounded-xl border border-border bg-bg text-sm text-text focus-ring"
           >
             <option value="featured">Featured</option>
             <option value="price-asc">Price: Low to High</option>

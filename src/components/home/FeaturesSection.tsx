@@ -11,7 +11,7 @@ export function FeaturesSection() {
       <div className="container-main">
         <div className="text-center mb-12">
           <p className="section-label">Why Golden Willowe</p>
-          <h2 className="text-3xl md:text-4xl font-black text-primary font-display mt-3">Crafted for Champions</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-text font-display mt-3">Crafted for Champions</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

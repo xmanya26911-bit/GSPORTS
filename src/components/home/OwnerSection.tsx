@@ -10,7 +10,7 @@ export function OwnerSection() {
         <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <p className="section-label justify-start">Meet the Maker</p>
-            <h2 className="text-3xl md:text-4xl font-black text-primary font-display mt-3 mb-4">{OWNER_NAME}</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-text font-display mt-3 mb-4">{OWNER_NAME}</h2>
             <p className="text-text-muted text-base leading-relaxed mb-6">
               15+ years of bat-making mastery. Every bat from Golden Willowe carries his personal touch and commitment to perfection.
             </p>

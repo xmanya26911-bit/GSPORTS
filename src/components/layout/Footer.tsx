@@ -10,10 +10,10 @@ export function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                <span className="text-primary text-lg font-black">GW</span>
+                <span className="text-text text-lg font-black">GW</span>
               </div>
               <div>
-                <span className="text-lg font-bold text-primary font-display">{SITE_NAME}</span>
+                <span className="text-lg font-bold text-text font-display">{SITE_NAME}</span>
                 <span className="block text-[10px] text-text-muted tracking-[0.2em] uppercase">EST. 2010</span>
               </div>
             </div>

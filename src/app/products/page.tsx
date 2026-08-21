@@ -26,7 +26,7 @@ export default async function ProductsPage() {
   return (
     <div className="container-main py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-black text-primary font-display mb-2">Our Collection</h1>
+        <h1 className="text-3xl md:text-4xl font-black text-text font-display mb-2">Our Collection</h1>
         <p className="text-text-muted">Handcrafted premium cricket bats</p>
       </div>
 

@@ -309,7 +309,7 @@ export function ProductDetailClient({ product }: { product: Product }) {
       </div>
 
       {/* Sticky Buy Bar (mobile) */}
-      <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden safe-bottom border-t border-border bg-white/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
+      <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden safe-bottom border-t border-border bg-bg/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
         <div className="flex items-center gap-2.5 px-4 py-3">
           <div className="flex-1 min-w-0 pr-1">
             <p className="text-[10px] uppercase tracking-wider text-text-muted">Price</p>

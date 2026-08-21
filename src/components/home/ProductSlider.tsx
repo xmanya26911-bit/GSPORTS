@@ -39,7 +39,7 @@ function ProductCard({ product, index }: ProductCardProps) {
           <p className="text-xs text-text-muted uppercase tracking-wider mb-1">{product.brand}</p>
           <h3 className="font-medium text-sm text-text leading-tight mb-2 line-clamp-2">{product.name}</h3>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-primary text-base">{formatProductPrice(product.price)}</span>
+            <span className="font-bold text-text text-base">{formatProductPrice(product.price)}</span>
             {isOnSale && (
               <span className="text-text-muted text-sm line-through">
                 ₹{product.compareAtPrice?.toLocaleString("en-IN")}
@@ -98,7 +98,7 @@ export function ProductSlider({ title, collection, link, products }: ProductSlid
     <section className="section-padding bg-bg">
       <div className="container-main">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-black text-primary font-display">{title}</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-text font-display">{title}</h2>
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex items-center gap-1">
               <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="p-2 rounded-full border border-border text-text-muted hover:text-text hover:border-accent transition-colors disabled:opacity-30 focus-ring" aria-label="Scroll left">

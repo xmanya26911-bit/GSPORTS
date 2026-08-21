@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-primary: #0A0A0A;
@@ -33,6 +34,27 @@
   --section-spacing: 5rem;
 }
 
+.dark {
+  --color-bg: #0B0B0D;
+  --color-surface: #141417;
+  --color-bg-alt: #121215;
+  --color-bg-dark: #1C1C20;
+  --color-bg-hover: #1C1C20;
+  --color-bg-card: #141417;
+  --color-border: #2A2A30;
+  --color-border-light: #1C1C20;
+  --color-text: #F4F4F5;
+  --color-text-muted: #A1A1AA;
+  --color-text-light: #71717A;
+  --color-text-secondary: #D4D4D8;
+  --color-text-tertiary: #71717A;
+  --color-premium-dark: #1A1814;
+  --color-danger: #F87171;
+  --color-success: #4ADE80;
+  --color-error: #F87171;
+  --color-warning: #FBBF24;
+}
+
 @layer base {
   * { box-sizing: border-box; }
   html {
@@ -62,7 +84,7 @@
     content: ""; width: 2rem; height: 1px; background: rgba(212, 175, 55, 0.3);
   }
   .glass-card {
-    background: #FFFFFF; border: 1px solid var(--color-border);
+    background: var(--color-surface); border: 1px solid var(--color-border);
     border-radius: 0.75rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .glass-card:hover {
@@ -83,7 +105,7 @@
   .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
 
   .glass-premium {
-    background: rgba(255, 255, 255, 0.92);
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--color-border);
@@ -94,7 +116,7 @@
     padding: 0.625rem 1rem;
     border-radius: 0.75rem;
     border: 1px solid var(--color-border);
-    background: #fff;
+    background: var(--color-bg);
     font-size: 0.875rem;
     color: var(--color-text);
     transition: border-color 0.2s, box-shadow 0.2s;
