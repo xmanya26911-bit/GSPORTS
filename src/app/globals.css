@@ -60,6 +60,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    background: var(--color-bg);
   }
   body {
     background: var(--color-bg);
@@ -67,6 +68,7 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    min-height: 100vh;
   }
   ::selection { background: rgba(212, 175, 55, 0.25); color: #fff; }
   h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
