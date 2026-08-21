@@ -11,40 +11,19 @@ import {
   Shield,
 } from "lucide-react";
 import { useCart } from "@/store/cart";
-import { useCustomer } from "@/store/customer";
 import DynamicUPICheckout from "@/components/DynamicUPICheckout";
 import { ProductImage } from "@/components/ProductImage";
 import { MERCHANT } from "@/lib/upi";
-import type { OrderItem } from "@/types";
 
 const WHATSAPP_NUMBER = MERCHANT.whatsapp;
 
 export default function CheckoutPage() {
   const { items, totalPrice, totalItems, clearCart } = useCart();
-  const customer = useCustomer((s) => s.customer);
   const [orderId, setOrderId] = useState("");
   const [step, setStep] = useState<"checkout" | "success">("checkout");
 
   const handlePaid = () => {
     if (!orderId) return;
-    const orderItems: OrderItem[] = items.map((i) => ({
-      name: i.name,
-      slug: i.slug,
-      price: i.price,
-      quantity: i.quantity,
-    }));
-    const address = customer?.addresses.find((a) => a.isDefault) ?? customer?.addresses[0];
-    void fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: orderId,
-        customerPhone: customer?.phone,
-        items: orderItems,
-        total: totalPrice(),
-        address,
-      }),
-    }).catch(() => {});
     const itemsList = items
       .map((i) => `• ${i.name} × ${i.quantity} = ${i.price}`)
       .join("%0A");

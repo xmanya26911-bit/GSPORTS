@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCustomerByPhone, updateCustomer } from "@/lib/customers";
 import { verifyCustomerSession, CUSTOMER_COOKIE } from "@/lib/auth-customer";
-import type { Address } from "@/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,7 +13,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ customer: customer ?? null });
 }
 
-type PatchBody = { name?: string; email?: string; addresses?: Address[] };
+type PatchBody = { name?: string; email?: string; addresses?: import("@/lib/customers").Address[] };
 
 export async function PATCH(req: NextRequest) {
   const token = req.cookies.get(CUSTOMER_COOKIE)?.value;

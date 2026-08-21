@@ -1,8 +1,27 @@
 import { list, put } from "@vercel/blob";
-import type { Address, Customer } from "@/types";
 
 export const CUSTOMERS_TAG = "customers";
 const PATH = "data/customers.json";
+
+export type Address = {
+  id: string;
+  line1: string;
+  city: string;
+  state: string;
+  pincode: string;
+  isDefault?: boolean;
+};
+
+export type Customer = {
+  id: string;
+  phone: string; // E.164
+  name?: string;
+  email?: string;
+  addresses: Address[];
+  orderIds: string[];
+  createdAt: number;
+  updatedAt: number;
+};
 
 /** Normalizes an Indian phone number to E.164 (+91XXXXXXXXXX). Returns null if invalid. */
 export function normalizePhone(raw?: string): string | null {

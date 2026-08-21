@@ -2,25 +2,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ShoppingBag, Phone, Moon, Sun, User } from "lucide-react";
+import { Menu, X, ShoppingBag, Phone, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_NAME, NAV_LINKS, PHONE, PHONE_URL, WHATSAPP_URL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { useCustomer } from "@/store/customer";
-import { LoginModal } from "@/components/auth/LoginModal";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [loginOpen, setLoginOpen] = useState(false);
   const pathname = usePathname();
-  const customer = useCustomer((s) => s.customer);
-  const load = useCustomer((s) => s.load);
-
-  useEffect(() => {
-    void load();
-  }, [load]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -79,17 +70,6 @@ export function Header() {
             <button onClick={toggleTheme} className="p-3 text-text-muted hover:text-text transition-colors focus-ring rounded-sm" aria-label="Toggle dark mode" title="Toggle dark mode">
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            {customer ? (
-              <Link href="/account" className="p-1.5 text-text-muted hover:text-text transition-colors focus-ring rounded-full" aria-label="My account">
-                <span className="w-7 h-7 rounded-full bg-accent/10 text-accent text-[11px] font-bold flex items-center justify-center">
-                  {(customer.name ?? customer.phone).split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase() || customer.phone.slice(-2)}
-                </span>
-              </Link>
-            ) : (
-              <button onClick={() => setLoginOpen(true)} className="p-3 text-text-muted hover:text-text transition-colors focus-ring rounded-sm" aria-label="Login or create account">
-                <User className="w-5 h-5" />
-              </button>
-            )}
             <Link href="/cart" className="p-3 text-text-muted hover:text-text transition-colors focus-ring rounded-sm relative" aria-label="Shopping cart">
               <ShoppingBag className="w-5 h-5" />
             </Link>
@@ -116,7 +96,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </header>
   );
 }
