@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { CUSTOMER_COOKIE } from "@/lib/auth-customer";
+import { ADMIN_COOKIE } from "@/lib/auth";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST() {
-  const res = NextResponse.json({ success: true });
-  res.cookies.set(CUSTOMER_COOKIE, "", { path: "/", maxAge: 0 });
-  return res;
+  const response = NextResponse.json({ success: true });
+  response.cookies.set(ADMIN_COOKIE, "", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 0,
+  });
+  return response;
 }
